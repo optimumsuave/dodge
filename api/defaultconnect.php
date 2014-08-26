@@ -1,5 +1,6 @@
 <?php
 
+//N.B.**** CHANGE THESE AND SAVE AS "connect.php"
 
 $mysqli = mysqli_connect("127.0.0.1", "username", "password", "dodgeball");
 
