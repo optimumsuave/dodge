@@ -32,7 +32,7 @@ function getDodgeInfo($token, $mysqli){
 	$gstatement->bind_param('s', $token);
 	if($gstatement->execute()){
 		$r = array();
-	   	$gstatement->bind_result($r['info'], $r['throw_data'], $r['done']);
+	   	$gstatement->bind_result($r['name'], $r['throw_data'], $r['done']);
 	   	$r['token'] = $token;
 	   	mysqli_stmt_fetch($gstatement);
 	   	return $r;

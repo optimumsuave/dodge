@@ -3,18 +3,13 @@ $( document ).ready(function() {
 	ROTATE_MAG = 2;
 	PRACTICE_MODE = 0;
 	GAME_INFO = null;
+	HELP = 0;
 
 	bindStuff();
 	clickables();
 	if(TOKEN !== null) {
 		getGameInfo();
 		$(".menu ul").hide();
-		$(".menu .challenged").html("<span>CONNOR NIELSEN</span><br>has thrown dodgeballs at you!").fadeIn(1500);
-		setTimeout(function(){
-			$sdude.addClass("frown");
-			$banner.fadeOut(500);
-			$bannerMenu.fadeIn(500);
-		}, 1500);
 	} else {
 		runApp();
 	}
@@ -25,6 +20,7 @@ function bindStuff() {
 	$hit = $(".hit");
 	$dude = $(".dude");
 	$sdude = $(".sdude");
+	$sdudeouter = $(".sdude-outer");
 	$torso = $(".torso");
 	$wrap = $(".wrap");
 	$ball = $(".ball");
@@ -98,6 +94,7 @@ function clickables(){
 	});
 	$tapToHideHelp.click(function(event) {
 		event.preventDefault();
+		HELP = 1;
 		startGame();
 	});
 }
@@ -109,14 +106,22 @@ function startPractice(){
 	PRACTICE_MODE = 1;
 }
 function startGame(){
-	$help.removeClass("hide");
-	clearScreenOfCrap();
+	$help.addClass("hide");
+	setTimeout(showOpponent, 500);
+
+	if(PRACTICE_MODE) {
+
+	}
 }
 function clearScreenOfCrap(){
 	$bannerMenu.fadeOut('200');
 	$challenged.fadeOut('200');
 	$ball.addClass('hide');
 	$sdude.addClass('hide');
+}
+function showOpponent(){
+	$sdude.removeClass("hide");
+	$sdudeouter.addClass("play");
 }
 function showCharacter() {
 	$dude.removeClass('hide');
@@ -149,7 +154,20 @@ function getGameInfo(){
 			},
 		}).success(function(data){
 			GAME_INFO = JSON.parse(data);
+			onGetGameInfo();
 		});
+	}
+}
+function onGetGameInfo() {
+	if(GAME_INFO.name !== null) {
+		$(".menu .challenged").html("<span>"+GAME_INFO.name+"</span><br>has thrown dodgeballs at you!").fadeIn(1500);
+		setTimeout(function(){
+			$sdude.addClass("frown");
+			$banner.fadeOut(500);
+			$bannerMenu.fadeIn(500);
+		}, 1500);
+	} else {
+		$(".menu .challenged").html("Sorry, we can't find your game.").fadeIn(1000);
 	}
 }
 function updateGameInfo(){

@@ -260,12 +260,19 @@ pre code[class*="language-"], pre code {
   min-height: 400px;
   margin: 0 auto;
   background: #000000;
-  -moz-box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.75);
-  -webkit-box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.75);
-  box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.75);
 }
 
 /* line 15, ../scss/_body.scss */
+.wrap-outer {
+  -moz-box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.75);
+  -webkit-box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.75);
+  padding-bottom: 240px;
+  width: 800px;
+  margin: 0 auto;
+}
+
+/* line 21, ../scss/_body.scss */
 .sdude-outer {
   position: absolute;
   margin-left: 330px;
@@ -274,8 +281,19 @@ pre code[class*="language-"], pre code {
   width: 76px;
   overflow: hidden;
 }
+/* line 29, ../scss/_body.scss */
+.sdude-outer.play {
+  margin-left: 200px;
+  top: 170px;
+}
+/* line 33, ../scss/_body.scss */
+.sdude-outer.play .sdude {
+  background-size: cover;
+  width: 40px;
+  height: 88px;
+}
 
-/* line 23, ../scss/_body.scss */
+/* line 40, ../scss/_body.scss */
 .sdude {
   overflow: hidden;
   background: url(../images/didle.png);
@@ -289,24 +307,24 @@ pre code[class*="language-"], pre code {
   -webkit-transition: 0.1s all ease-in-out;
   transition: 0.1s all ease-in-out;
 }
-/* line 33, ../scss/_body.scss */
+/* line 50, ../scss/_body.scss */
 .sdude.throw {
   width: 65px;
   background-position: 0px 0px;
   background: url(../images/dthrow.png);
 }
-/* line 39, ../scss/_body.scss */
+/* line 56, ../scss/_body.scss */
 .sdude.frown {
   width: 65px;
   background-position: 0px 0px;
   background: url(../images/dthrowfrown.png);
 }
-/* line 45, ../scss/_body.scss */
+/* line 62, ../scss/_body.scss */
 .sdude.hide {
   opacity: 0;
 }
 
-/* line 51, ../scss/_body.scss */
+/* line 70, ../scss/_body.scss */
 .content-inner {
   max-width: 500px;
   width: 100%;
@@ -315,7 +333,7 @@ pre code[class*="language-"], pre code {
   position: relative;
 }
 
-/* line 61, ../scss/_body.scss */
+/* line 80, ../scss/_body.scss */
 .court {
   top: 360px;
   height: 280px;
@@ -323,11 +341,8 @@ pre code[class*="language-"], pre code {
   background: url(../images/courtcondensed.jpg);
   position: absolute;
   z-index: 1;
-  -moz-box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.75);
-  -webkit-box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.75);
-  box-shadow: 0px 5px 15px 0px rgba(50, 50, 50, 0.75);
 }
-/* line 70, ../scss/_body.scss */
+/* line 88, ../scss/_body.scss */
 .court.play {
   -moz-transition: all 2s ease-in-out;
   -o-transition: all 2s ease-in-out;
@@ -338,7 +353,7 @@ pre code[class*="language-"], pre code {
   top: 190px;
 }
 
-/* line 79, ../scss/_body.scss */
+/* line 97, ../scss/_body.scss */
 .banner {
   width: 232px;
   height: 154px;
@@ -349,13 +364,13 @@ pre code[class*="language-"], pre code {
   left: -5px;
 }
 
-/* line 90, ../scss/_body.scss */
+/* line 108, ../scss/_body.scss */
 .bannermenu {
   top: 190px;
   position: absolute;
   display: none;
 }
-/* line 95, ../scss/_body.scss */
+/* line 113, ../scss/_body.scss */
 .bannermenu ul li {
   float: left;
   clear: both;
@@ -368,7 +383,7 @@ pre code[class*="language-"], pre code {
   text-decoration: none;
   color: #FFF;
 }
-/* line 107, ../scss/_body.scss */
+/* line 125, ../scss/_body.scss */
 .bannermenu ul li:hover {
   -moz-transition: all 0.1s ease-in;
   -o-transition: all 0.1s ease-in;
@@ -378,7 +393,7 @@ pre code[class*="language-"], pre code {
   cursor: pointer;
   color: #333;
 }
-/* line 116, ../scss/_body.scss */
+/* line 134, ../scss/_body.scss */
 .bannermenu h3 {
   color: #FFF;
   font-family: 'Montserrat';
@@ -386,7 +401,7 @@ pre code[class*="language-"], pre code {
   margin-bottom: 40px;
 }
 
-/* line 124, ../scss/_body.scss */
+/* line 142, ../scss/_body.scss */
 .help {
   width: 800px;
   background: rgba(0, 0, 0, 0.8);
@@ -403,37 +418,37 @@ pre code[class*="language-"], pre code {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
-/* line 136, ../scss/_body.scss */
+/* line 154, ../scss/_body.scss */
 .help.hide {
   top: -540px;
 }
-/* line 140, ../scss/_body.scss */
+/* line 158, ../scss/_body.scss */
 .help h2, .help h3 {
   color: #FFF;
   font-size: 1.4em;
   font-family: 'Montserrat';
   margin-top: 10px;
 }
-/* line 147, ../scss/_body.scss */
+/* line 165, ../scss/_body.scss */
 .help h3 {
   margin-top: 2px;
   font-size: 0.8em;
 }
-/* line 152, ../scss/_body.scss */
+/* line 170, ../scss/_body.scss */
 .help img {
   width: auto;
   height: 70px;
   margin-top: 20px;
 }
-/* line 159, ../scss/_body.scss */
+/* line 177, ../scss/_body.scss */
 .help .mobile.hide {
   display: none;
 }
-/* line 165, ../scss/_body.scss */
+/* line 183, ../scss/_body.scss */
 .help .desktop.hide {
   display: none;
 }
-/* line 169, ../scss/_body.scss */
+/* line 187, ../scss/_body.scss */
 .help a {
   background: #00BEE7;
   color: #fff;
@@ -450,13 +465,13 @@ pre code[class*="language-"], pre code {
   -webkit-transition: 0.2s all ease-in-out;
   transition: 0.2s all ease-in-out;
 }
-/* line 182, ../scss/_body.scss */
+/* line 200, ../scss/_body.scss */
 .help a:hover {
   background: #e5e5e5;
   color: #333;
 }
 
-/* line 190, ../scss/_body.scss */
+/* line 208, ../scss/_body.scss */
 .dude {
   position: absolute;
   -moz-transition: 0.1s all ease-in-out;
@@ -468,12 +483,12 @@ pre code[class*="language-"], pre code {
   margin-left: -45px;
   z-index: 200;
 }
-/* line 197, ../scss/_body.scss */
+/* line 215, ../scss/_body.scss */
 .dude.hide {
   display: none;
 }
 
-/* line 201, ../scss/_body.scss */
+/* line 219, ../scss/_body.scss */
 .torso {
   background: url(../images/torso2.png);
   width: 95px;
@@ -489,29 +504,29 @@ pre code[class*="language-"], pre code {
   -webkit-transform-origin: 50px 165px;
   transform-origin: 50px 165px;
 }
-/* line 211, ../scss/_body.scss */
+/* line 229, ../scss/_body.scss */
 .torso.right {
   -moz-transform: rotateZ(40deg);
   -ms-transform: rotateZ(40deg);
   -webkit-transform: rotateZ(40deg);
   transform: rotateZ(40deg);
 }
-/* line 214, ../scss/_body.scss */
+/* line 232, ../scss/_body.scss */
 .torso.left {
   -moz-transform: rotateZ(-40deg);
   -ms-transform: rotateZ(-40deg);
   -webkit-transform: rotateZ(-40deg);
   transform: rotateZ(-40deg);
 }
-/* line 218, ../scss/_body.scss */
+/* line 236, ../scss/_body.scss */
 .torso.hide {
   opacity: 0;
 }
-/* line 222, ../scss/_body.scss */
+/* line 240, ../scss/_body.scss */
 .torso.dead {
   position: relative;
 }
-/* line 226, ../scss/_body.scss */
+/* line 244, ../scss/_body.scss */
 .torso.deadScreen {
   width: 160px;
   height: 300px;
@@ -521,7 +536,7 @@ pre code[class*="language-"], pre code {
   left: -32px;
 }
 
-/* line 238, ../scss/_body.scss */
+/* line 256, ../scss/_body.scss */
 .legs {
   background: url(../images/legs.png);
   width: 53px;

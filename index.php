@@ -32,6 +32,7 @@
                 </div>
               </div>
             </div>
+    <div class="wrap-outer">
     <div class="wrap">
       <div class="shell">
         <div class="content-inner">
@@ -61,6 +62,7 @@
         <div class="court">
         </div>
       </div>
+    </div>
     </div>
 
     <!-- load js libs here -->
