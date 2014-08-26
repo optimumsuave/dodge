@@ -1,0 +1,49 @@
+//Ball
+
+$ball : #EC3A38;
+
+
+.ball-y {
+	z-index: 100;
+	position: absolute;
+	top: 280px;
+	left: 50%;
+}
+
+.ball-y.throw {
+	@include transition(all 1s cubic-bezier(0.950, 0.050, 0.795, 0.035));
+	@include transition(all 1s cubic-bezier(1,0,1,.17));
+}
+
+.ball {
+	width: 20px;
+	height: 20px; 
+	@include border-radius(50%);
+	background: $ball;
+	position: absolute;
+	margin-left: 85px;
+
+	&.hide {
+		display: none;
+	}
+}
+
+
+.ball.big {
+	width: 120px;
+	height: 120px; 
+	@include transition(all 1s  cubic-bezier(1,0,1,.17));
+	opacity: 0;
+}
+.ball.c {
+	// @include transition(all 1.5s cubic-bezier(0,1.77,1,-0.41));
+	// @include transition(all 1.5s cubic-bezier(1,0,1,.17));
+}
+.ball.l {
+	// @include transition(all 1.5s cubic-bezier(0,1.77,.81,1.41));
+	// @include transition(all 1.5s cubic-bezier(1,0,1,.17));
+}
+.ball.r {
+	// @include transition(all 1.5s cubic-bezier(0,1.77,1,-0.97));
+	// @include transition(all 1.5s cubic-bezier(1,0,1,.17));
+}

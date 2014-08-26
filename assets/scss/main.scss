@@ -1,0 +1,82 @@
+@import "compass";
+@import "compass/reset";
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,100italic,300,100);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
+
+
+$mustard : #ffb200;
+$ltgray : #F8F8F8;
+$blue : #00BEE7;
+@import "mixins";
+
+body {
+	font-family: 'Source Sans Pro';
+	overflow: -moz-scrollbars-vertical;
+	overflow-y: scroll;
+ 	position: relative;
+ 	z-index: 1; 	
+ 	background: #e5e5e5;
+
+}
+p {
+	line-height: 1.6em;
+	font-weight: 300;
+	font-size: 1em;
+	margin-top: 30px;
+}
+
+a {
+	color: #888888;
+
+	text-decoration: underline;
+
+	&:visited {
+		color: #888888;
+	}
+
+	&:hover {
+		color: #000000;
+		text-decoration: none;
+	}
+}
+
+
+
+h1 {
+	font-size: 2em;
+	color: #444444;
+	font-family: 'Montserrat';
+}
+
+code {
+	background: #333333;
+}
+
+pre {
+
+	display: block;
+	background: #121212 !important;
+	padding:20px;
+	margin-top:1.5em !important;
+	overflow: scroll;
+	@include border-radius(5px);
+	code[class*="language-"], code {
+		background: none !important;
+		box-shadow: none;
+	}
+
+}
+
+span {
+	float:left;
+	clear: both;
+}
+
+
+
+@import "ball";
+@import "nav";
+@import "body";
