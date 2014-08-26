@@ -4,10 +4,13 @@
 	font-family: 'Montserrat';
 	position: relative;
 	top: 100px;
-	left: -5px;
+	width: 500px;
+	margin: 0 auto;
 	ul {
 		margin: 0 auto;
 		display: block;
+		position: relative;
+		left: -10px;
 
 		@include breakpoint(mobile) {
 			display: none;
@@ -56,9 +59,10 @@
 		display: none;
 		color: #FFF;
 		font-weight: 600;
-		margin-left: 10px;
+		font-size: 1.8em;
 		position: absolute;
 		span {
+			font-size: 1.1em;
 			color: $blue;
 		}
 	}

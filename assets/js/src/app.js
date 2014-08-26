@@ -9,7 +9,7 @@ $( document ).ready(function() {
 	if(TOKEN !== null) {
 		getGameInfo();
 		$(".menu ul").hide();
-		$(".menu .challenged").html("<span>CONNOR NIELSEN</span> &nbsp; has thrown dodgeballs in your direction!").fadeIn(1500);
+		$(".menu .challenged").html("<span>CONNOR NIELSEN</span><br>has thrown dodgeballs at you!").fadeIn(1500);
 		setTimeout(function(){
 			$sdude.addClass("frown");
 			$banner.fadeOut(500);

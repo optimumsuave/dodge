@@ -83,11 +83,12 @@ background: #000000;
 	position: relative;
 	top: 180px;
 	z-index: 10;
+	left: -5px;
 }
 
 
 .bannermenu {
-	top: 230px;
+	top: 190px;
 	position: absolute;
 	display: none;
 	ul {
@@ -110,6 +111,13 @@ background: #000000;
 				color:#333;
 			}
 		}
+	}
+
+	h3 {
+		color: #FFF;
+		font-family: 'Montserrat';
+		font-size: 0.8em;
+		margin-bottom: 40px;
 	}
 }
 

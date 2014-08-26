@@ -47,7 +47,7 @@
           <div class="banner">
           </div>
           <div class="bannermenu">
-            <h3>You can always practice before you dodge other people's throws</h3> 
+            <h3>You can always practice before you dodge friends' throws.</h3> 
             <ul>
               <li class="practice">PRACTICE</li>
               <li class="ready">I'M READY TO DODGE</li>
