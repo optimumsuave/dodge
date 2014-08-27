@@ -3,6 +3,7 @@ $( document ).ready(function() {
 	ROTATE_MAG = 2;
 	PRACTICE_MODE = 0;
 	GAME_INFO = null;
+	GAME_MODE = 0;
 	HELP = 0;
 
 	bindStuff();
@@ -105,13 +106,19 @@ function startPractice(){
 	$help.find(".desktop").removeClass("hide");
 	PRACTICE_MODE = 1;
 }
+function startDodging(){
+	
+}
 function startGame(){
 	$help.addClass("hide");
 	setTimeout(showOpponent, 500);
 
 	if(PRACTICE_MODE) {
-
+		startPracticeBallsLoop();
 	}
+}
+function startPracticeBallsLoop(){
+	throwBall();
 }
 function clearScreenOfCrap(){
 	$bannerMenu.fadeOut('200');
