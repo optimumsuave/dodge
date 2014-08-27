@@ -6,9 +6,11 @@ $( document ).ready(function() {
 	GAME_MODE = 0;
 	TOTAL_DODGED = 0;
 	TOTAL_THROWN = 0;
+	RESETTING = 0;
 	CURRENT_BALL = 0;
 	THROW_DATA = ["c", "t", "l", "r", "x", "y"];
-	THROW_DATA = ["c", "r"];
+	THROW_DATA = ["c"];
+	NEW_THROW_DATA = [];
 	LAST_BALL = "";
 	HELP = 0;
 	choices = ["c", "t", "l", "r", "x", "y"];
@@ -47,6 +49,9 @@ function bindStuff() {
 	$court = $(".court");
 	$tapToHideHelp = $(".tapToHideHelp");
 	$tapToStartGameFromPractice = $(".tapToStartGameFromPractice");
+	$throwing = $(".throwing");
+	$throwlist = $(".throwlist");
+	$throwmore = $(".throwmore");
 	dudeTop = 400;
 
 
@@ -117,10 +122,21 @@ function clickables(){
 		event.preventDefault();
 		$tapToStartGameFromPractice.fadeOut(500);
 		resetGameData();
+		resetStats();
 		setTimeout(function(){
-			startDodging();
-		}, 1000);
+			resetStats();
+			startGame();
+			RESETTING = 0;
+			showCharacter();
+			PRACTICE_MODE = 0;
+			GAME_MODE = 1;
+		}, 2000);
 		
+	});
+
+	$(".throwchoose .throwitem").click(function(event){
+		event.preventDefault();
+		addToThrowList($(this).attr("data-throw"));
 	});
 }
 function startPractice(){
@@ -176,7 +192,9 @@ function showOpponent(){
 	}, 200);
 	$dodges.fadeIn(1000);
 	if(PRACTICE_MODE) {
-		$tapToStartGameFromPractice.fadeIn(1000);
+		setTimeout(function(){
+			$tapToStartGameFromPractice.fadeIn(1000);
+		}, 1000);
 	}
 }
 function showCharacter() {
@@ -202,8 +220,16 @@ function sendNewGame(){
 	});
 }
 function resetGameData(){
+	RESETTING = 1;
+	$ball.hide();
+	$sdude.addClass("hide");
+	$dodges.hide();
+}
+function resetStats(){
+	CURRENT_BALL = 0;
 	TOTAL_THROWN = 0;
 	TOTAL_DODGED = 0;
+	dodgeRatioUpdate();
 }
 function getGameInfo(){
 	if(TOKEN !== null) {
@@ -254,6 +280,20 @@ function runApp() {
 	}, 1000);
 }
 
+function addToThrowList(n) {
+	$throwlist.prepend("<div class='throwitem skinny "+n+"'></div>");
+	NEW_THROW_DATA.push(n);
+	if(NEW_THROW_DATA.length > 10) {
+		$throwmore.html("+ "+(NEW_THROW_DATA.length-10)+" MORE THROWS");
+		$throwmore.removeClass("hide");
+	} else {
+		$throwmore.addClass("hide");
+	}
+	setTimeout(function(){
+		$(".skinny").removeClass("skinny");
+	}, 100);
+}
+
 
 function parseMotion(mag){
 	var r = Math.floor(mag);
@@ -289,10 +329,15 @@ function currentBall(n) {
 	}
 }
 function checkIfDodged(){
+	console.log("CHECKING");
 	dead = false;
 	if($torso.hasClass('left') && (currentBall('l') || (currentBall('y')))) {
 		console.log("hitLeft");
 		dead = true;
+		$dude.addClass("spin left");
+		setTimeout(function(){
+			$dude.removeClass("spin left");
+		}, 1000);
 	}
 	if($torso.hasClass('right') && (currentBall('r') || (currentBall('x')))) {
 		console.log("hitRight");
@@ -336,6 +381,8 @@ function getThrowIndex(ball) {
 }
 function gameFinished(){
 	$help.removeClass("hide");
+	$dude.addClass("hide");
+	$throwing.removeClass("hide");
 	$dodges.addClass("ontop");
 }
 function throwBall(){
@@ -352,6 +399,7 @@ function throwBall(){
 		if(GAME_MODE) {
 			if(CURRENT_BALL < THROW_DATA.length) {
 				rand = getThrowIndex(THROW_DATA[CURRENT_BALL]);
+				LAST_BALL = choices[rand];
 			}
 		} else {
 			rand = getRandomThrow();
@@ -382,7 +430,6 @@ function throwBall(){
 
 
 		if(GAME_MODE || PRACTICE_MODE){
-			CURRENT_BALL++;
 			var checking = setInterval(function(){
 				if($bally.offset().top > 400) { 
 					//Game and practice
@@ -394,23 +441,34 @@ function throwBall(){
 				
 					$ball.hide();
 					setTimeout(function(){
-
 						//$bally.addClass('throw');
 						$sdude.addClass('throw');
 						setTimeout(function(){
 							console.log(GAME_MODE, PRACTICE_MODE);
 							if(GAME_MODE) {
+								if(!RESETTING){
+									CURRENT_BALL++;
+								}
 								if(CURRENT_BALL < THROW_DATA.length){
-									throwBall();
+									console.log("B", THROW_DATA.length, CURRENT_BALL, TOTAL_THROWN)
+									if(!RESETTING){
+										throwBall();
+									}
+								
 								} else {
 									gameFinished();
 								}
 							} else {
-								throwBall();
+								CURRENT_BALL++;
+								if(!RESETTING){
+									throwBall();
+								}
 							}
 						}, 100);
 					}, 1000);
-					checkIfDodged();
+					if(!RESETTING) {
+						checkIfDodged();
+					}
 					clearInterval(checking);
 				}
 

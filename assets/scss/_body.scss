@@ -222,6 +222,11 @@ background: #000000;
 		left: 120%;
 		top: 1200px;
 	}
+
+	&.left {
+		left: -10%;
+		@include transform(rotate(-800deg));
+	}
 }
 .torso {
 	background: url(../images/torso2.png);
@@ -294,7 +299,7 @@ background: #000000;
 		@include transition(1s all ease-in-out);
 		z-index: 500;
 		font-size: 1.4em;
-		top: 150px;
+		top: 40px;
 	}
 }
 
@@ -318,16 +323,107 @@ background: #000000;
 
 .cracked {
 	background: url(../images/cracked.png);
-        width: 800px;
-        height: 450px;
-        margin: 0 auto;
-        position:absolute;
-        left:50%;
-        margin-left: -400px;
-        z-index: 500;
-        top: 180px;
+    width: 800px;
+    height: 450px;
+    margin: 0 auto;
+    position:absolute;
+    left:50%;
+    margin-left: -400px;
+    z-index: 500;
+    top: 180px;
 	
 	&.hide {
 		display:none;
 	}
+}
+
+.throwing {
+	width: 600px;
+	height: 118px;
+	margin-left: 100px;
+	&.hide {
+		display: none;
+	}
+
+	.throwmore {
+		float: right;
+		margin-top:5px;
+		color: #FFF;
+
+		&.hide {
+			visibility: hidden;
+		}
+	}
+
+	.throwchoose {
+		margin-top: 10px;
+		background: $blue;
+		float: left;
+		width: 100%;
+		clear: both;
+		padding-bottom: 15px;
+		h2 {
+			font-size: 1em;
+		}
+
+		.throwcenter{
+			margin:15px auto;
+			width: 360px;
+		}
+
+		.throwitem {
+			&:hover{
+				@include box-shadow(inset 0 0 20px #333);
+			}
+		}
+	}
+}
+.throwlist {
+	padding: 3px 0px;
+	border-top: $blue solid 2px;
+	border-bottom: $blue solid 2px;
+	height: 118px;
+	overflow: hidden;
+	.throwitem {
+		&:hover{
+			@include box-shadow(inset 0 0 20px red);
+		}
+	}
+	
+}
+
+.throwitem {
+	background: url(../images/arrows.png);
+	width: 60px;
+	height: 118px;
+	float: left;
+	@include transition(0.2s all ease-in-out);
+
+	cursor: pointer;
+	
+
+	&.skinny {
+		width: 0px;
+	}
+
+	&.y {
+		background-position: 0px 0;
+	}
+	&.x {
+		background-position: 60px 0;
+	}
+	
+	&.c {
+		background-position: 180px 0;
+	}
+	&.t {
+		background-position: 240px 0;
+	}
+	&.l {
+		background-position: 120px 0;
+	}
+	&.r {
+		background-position: 300px 0;
+	}
+
 }
