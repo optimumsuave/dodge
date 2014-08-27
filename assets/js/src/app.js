@@ -9,7 +9,7 @@ $( document ).ready(function() {
 	RESETTING = 0;
 	CURRENT_BALL = 0;
 	THROW_DATA = ["c", "t", "l", "r", "x", "y"];
-	THROW_DATA = ["c"];
+	THROW_DATA = ["t"];
 	NEW_THROW_DATA = [];
 	LAST_BALL = "";
 	HELP = 0;
@@ -52,6 +52,9 @@ function bindStuff() {
 	$throwing = $(".throwing");
 	$throwlist = $(".throwlist");
 	$throwmore = $(".throwmore");
+	$throwsend = $(".throwsend");
+	$tapToAddMail= $(".addmore");
+	$sendMails = $(".sendMails");
 	dudeTop = 400;
 
 
@@ -85,10 +88,6 @@ function bindStuff() {
 				}
 			}
 
-	  	}
-	  	if(e.which == 32) {
-	   		//right
-	   		throwBall();
 	  	}
 	});
 	$(document).keyup(function(e) {
@@ -133,11 +132,31 @@ function clickables(){
 		}, 2000);
 		
 	});
+	$tapToAddMail.click(function(event) {
+		event.preventDefault();
+		var em = $("#throwto").val();
+		$("#throwto").val("");
+		console.log(em);
+
+		if($(".mails span").size() < 3){
+			$(".mails").append('<span onclick="removeMe(this);">' + em + '</span>');
+		}
+		if($(".mails span").size() > 0) {
+			$sendMails.removeClass("hide");
+		}
+	});
 
 	$(".throwchoose .throwitem").click(function(event){
 		event.preventDefault();
 		addToThrowList($(this).attr("data-throw"));
 	});
+}
+function removeMe(who){
+	$(who).fadeOut(200).remove();
+
+	if($(".mails span").size() == 0){
+		$sendMails.addClass("hide");
+	}
 }
 function startPractice(){
 	$help.removeClass("hide");
@@ -281,17 +300,25 @@ function runApp() {
 }
 
 function addToThrowList(n) {
-	$throwlist.prepend("<div class='throwitem skinny "+n+"'></div>");
-	NEW_THROW_DATA.push(n);
-	if(NEW_THROW_DATA.length > 10) {
-		$throwmore.html("+ "+(NEW_THROW_DATA.length-10)+" MORE THROWS");
-		$throwmore.removeClass("hide");
-	} else {
-		$throwmore.addClass("hide");
+	if(NEW_THROW_DATA.length < 20) {
+		setTimeout(function(){
+			$throwsend.removeClass("hide");
+		}, 500);
+		$throwlist.prepend("<div class='throwitem skinny "+n+"'></div>");
+		NEW_THROW_DATA.push(n);
+		if(NEW_THROW_DATA.length > 10) {
+			$throwmore.html("+ "+(NEW_THROW_DATA.length-10)+" MORE THROWS");
+			$throwmore.removeClass("hide");
+		} else {
+			$throwmore.addClass("hide");
+		}
+		setTimeout(function(){
+			$(".skinny").removeClass("skinny");
+		}, 100);
 	}
-	setTimeout(function(){
-		$(".skinny").removeClass("skinny");
-	}, 100);
+	if(NEW_THROW_DATA.length == 0){
+		$throwsend.addClass("hide");
+	}
 }
 
 
@@ -375,8 +402,7 @@ function getRandomThrow(){
 	return r;
 }
 function getThrowIndex(ball) {
-	var ind = THROW_DATA.indexOf(ball);
-	console.log(ind+":"+choices[ind]);
+	var ind = choices.indexOf(ball);
 	return ind;
 }
 function gameFinished(){

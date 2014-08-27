@@ -690,11 +690,12 @@ pre code[class*="language-"], pre code {
   z-index: 500;
   font-size: 1.4em;
   top: 40px;
+  margin-left: -90px;
 }
 
-/* line 306, ../scss/_body.scss */
+/* line 307, ../scss/_body.scss */
 .tapToStartGameFromPractice {
-  background: #00BEE7;
+  background: #00bee7;
   color: #fff;
   font-size: 1em;
   padding: 10px 10px;
@@ -709,13 +710,13 @@ pre code[class*="language-"], pre code {
   transition: 0.2s all ease-in-out;
   cursor: pointer;
 }
-/* line 318, ../scss/_body.scss */
+/* line 319, ../scss/_body.scss */
 .tapToStartGameFromPractice:hover {
   background: #e5e5e5;
   color: #333;
 }
 
-/* line 324, ../scss/_body.scss */
+/* line 325, ../scss/_body.scss */
 .cracked {
   background: url(../images/cracked.png);
   width: 800px;
@@ -727,72 +728,198 @@ pre code[class*="language-"], pre code {
   z-index: 500;
   top: 180px;
 }
-/* line 335, ../scss/_body.scss */
+/* line 336, ../scss/_body.scss */
 .cracked.hide {
   display: none;
 }
 
-/* line 340, ../scss/_body.scss */
+/* line 341, ../scss/_body.scss */
 .throwing {
   width: 600px;
   height: 118px;
+  position: absolute;
   margin-left: 100px;
+  top: 100px;
 }
-/* line 344, ../scss/_body.scss */
+/* line 347, ../scss/_body.scss */
 .throwing.hide {
   display: none;
 }
-/* line 348, ../scss/_body.scss */
+/* line 351, ../scss/_body.scss */
+.throwing h2.titl {
+  margin: 10px 0;
+}
+/* line 355, ../scss/_body.scss */
 .throwing .throwmore {
   float: right;
   margin-top: 5px;
   color: #FFF;
 }
-/* line 353, ../scss/_body.scss */
+/* line 360, ../scss/_body.scss */
 .throwing .throwmore.hide {
   visibility: hidden;
 }
-/* line 358, ../scss/_body.scss */
+/* line 365, ../scss/_body.scss */
 .throwing .throwchoose {
   margin-top: 10px;
   background: #00bee7;
   float: left;
   width: 100%;
   clear: both;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
   padding-bottom: 15px;
 }
-/* line 365, ../scss/_body.scss */
+/* line 373, ../scss/_body.scss */
 .throwing .throwchoose h2 {
   font-size: 1em;
 }
-/* line 369, ../scss/_body.scss */
+/* line 377, ../scss/_body.scss */
 .throwing .throwchoose .throwcenter {
   margin: 15px auto;
   width: 360px;
 }
-/* line 375, ../scss/_body.scss */
+/* line 383, ../scss/_body.scss */
 .throwing .throwchoose .throwitem:hover {
   -moz-box-shadow: inset 0 0 20px #333333;
   -webkit-box-shadow: inset 0 0 20px #333333;
   box-shadow: inset 0 0 20px #333333;
 }
+/* line 389, ../scss/_body.scss */
+.throwing .throwsend {
+  width: 100%;
+  height: 120px;
+  float: left;
+  margin-top: 10px;
+}
+/* line 394, ../scss/_body.scss */
+.throwing .throwsend.hide {
+  display: none;
+}
+/* line 398, ../scss/_body.scss */
+.throwing .throwsend .leftbox {
+  float: left;
+  width: 40%;
+  text-align: left;
+  font-family: 'Montserrat';
+}
+/* line 404, ../scss/_body.scss */
+.throwing .throwsend .leftbox.right {
+  width: 60%;
+}
+/* line 407, ../scss/_body.scss */
+.throwing .throwsend .leftbox.right input {
+  float: left;
+}
+/* line 412, ../scss/_body.scss */
+.throwing .throwsend .leftbox span {
+  font-size: 0.8em;
+  color: #fff;
+}
+/* line 416, ../scss/_body.scss */
+.throwing .throwsend .leftbox input {
+  border: 0;
+  background: #cccccc;
+  font-size: 1em;
+  padding: 10px;
+  margin: 0;
+  -moz-transition: 0.2s all ease-in-out;
+  -o-transition: 0.2s all ease-in-out;
+  -webkit-transition: 0.2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
+}
+/* line 423, ../scss/_body.scss */
+.throwing .throwsend .leftbox input:focus {
+  background: #FFFFFF;
+}
+/* line 428, ../scss/_body.scss */
+.throwing .throwsend .leftbox .addmore {
+  background: #00bee7;
+  color: #fff;
+  font-size: 1em;
+  padding: 11px 10px;
+  text-decoration: none;
+  float: left;
+  width: 40px;
+  -moz-transition: 0.2s all ease-in-out;
+  -o-transition: 0.2s all ease-in-out;
+  -webkit-transition: 0.2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+}
+/* line 439, ../scss/_body.scss */
+.throwing .throwsend .leftbox .addmore:hover {
+  background: #e5e5e5;
+  color: #333;
+}
+/* line 445, ../scss/_body.scss */
+.throwing .throwsend .leftbox .sendMails {
+  color: #fff;
+  font-size: 1em;
+  padding: 12px 10px;
+  text-decoration: none;
+  float: left;
+  margin-top: 5px;
+  -moz-transition: 0.2s all ease-in-out;
+  -o-transition: 0.2s all ease-in-out;
+  -webkit-transition: 0.2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+}
+/* line 453, ../scss/_body.scss */
+.throwing .throwsend .leftbox .sendMails img {
+  margin-top: 5px;
+  width: 40px;
+  height: auto;
+}
+/* line 459, ../scss/_body.scss */
+.throwing .throwsend .leftbox .sendMails.hide {
+  display: none;
+}
+/* line 465, ../scss/_body.scss */
+.throwing .throwsend .leftbox .sendMails:hover {
+  background: #00bee7;
+  color: #333;
+}
+/* line 471, ../scss/_body.scss */
+.throwing .throwsend .leftbox .mails {
+  margin-top: 5px;
+  float: left;
+  width: 260px;
+}
+/* line 475, ../scss/_body.scss */
+.throwing .throwsend .leftbox .mails span {
+  padding: 6px 5px;
+  float: left;
+  clear: both;
+  width: 250px;
+  background: #333;
+}
+/* line 481, ../scss/_body.scss */
+.throwing .throwsend .leftbox .mails span:hover {
+  color: red;
+  background: #990000;
+  cursor: pointer;
+}
 
-/* line 381, ../scss/_body.scss */
+/* line 491, ../scss/_body.scss */
 .throwlist {
   padding: 3px 0px;
-  border-top: #00bee7 solid 2px;
+  margin-top: 10px;
+  float: left;
   border-bottom: #00bee7 solid 2px;
   height: 118px;
   overflow: hidden;
 }
-/* line 388, ../scss/_body.scss */
+/* line 499, ../scss/_body.scss */
 .throwlist .throwitem:hover {
   -moz-box-shadow: inset 0 0 20px red;
   -webkit-box-shadow: inset 0 0 20px red;
   box-shadow: inset 0 0 20px red;
 }
 
-/* line 395, ../scss/_body.scss */
+/* line 506, ../scss/_body.scss */
 .throwitem {
   background: url(../images/arrows.png);
   width: 60px;
@@ -804,31 +931,36 @@ pre code[class*="language-"], pre code {
   transition: 0.2s all ease-in-out;
   cursor: pointer;
 }
-/* line 405, ../scss/_body.scss */
+/* line 516, ../scss/_body.scss */
 .throwitem.skinny {
   width: 0px;
 }
-/* line 409, ../scss/_body.scss */
+/* line 520, ../scss/_body.scss */
 .throwitem.y {
   background-position: 0px 0;
 }
-/* line 412, ../scss/_body.scss */
+/* line 523, ../scss/_body.scss */
 .throwitem.x {
   background-position: 60px 0;
 }
-/* line 416, ../scss/_body.scss */
+/* line 527, ../scss/_body.scss */
 .throwitem.c {
   background-position: 180px 0;
 }
-/* line 419, ../scss/_body.scss */
+/* line 530, ../scss/_body.scss */
 .throwitem.t {
   background-position: 240px 0;
 }
-/* line 422, ../scss/_body.scss */
+/* line 533, ../scss/_body.scss */
 .throwitem.l {
   background-position: 120px 0;
 }
-/* line 425, ../scss/_body.scss */
+/* line 536, ../scss/_body.scss */
 .throwitem.r {
   background-position: 300px 0;
+}
+
+/* line 543, ../scss/_body.scss */
+#throwto {
+  min-width: 240px;
 }

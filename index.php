@@ -28,19 +28,33 @@
       <a href="#" class="tapToHideHelp">GOT IT!</a>
 
       <div class="throwing hide">
+        <h2 class="titl">Throw some at your friends!</h2>
+        <div class="throwchoose">
+          <h2>Click the paths below to add to your dodgeball throw list.</h2>
+          <div class="throwcenter">
+            <div class="throwitem y" data-throw="x"></div>
+            <div class="throwitem r" data-throw="l"></div>
+            <div class="throwitem c" data-throw="c"></div>
+            <div class="throwitem t" data-throw="t"></div>
+            <div class="throwitem l" data-throw="l"></div>
+            <div class="throwitem x" data-throw="x"></div>
+          </div>
+        </div>
+
         <div class="throwlist">
         </div>
         <div class="throwmore hide">+
         </div>
-        <div class="throwchoose">
-          <h2>Click the paths below to add to your dodgeball throw list.</h2>
-          <div class="throwcenter">
-            <div class="throwitem x" data-throw="x"></div>
-            <div class="throwitem l" data-throw="l"></div>
-            <div class="throwitem c" data-throw="c"></div>
-            <div class="throwitem t" data-throw="t"></div>
-            <div class="throwitem r" data-throw="r"></div>
-            <div class="throwitem y" data-throw="y"></div>
+        <div class="throwsend hide">
+          <div class="leftbox">
+            <span>YOUR NAME</span><input type="text" id="namefrom"/><br>
+            <span>YOUR EMAIL</span><input type="email" id="emfrom"/>
+
+          </div>
+          <div class="leftbox right">
+            <span>SEND THESE THROWS TO THIS EMAIL</span><input type="text" id="throwto"/><div class="addmore">ADD</div>
+            <div class="mails"></div>
+            <div class="sendMails hide"><img src="assets/images/send.png"/></div>
           </div>
         </div>
       </div>

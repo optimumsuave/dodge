@@ -300,11 +300,12 @@ background: #000000;
 		z-index: 500;
 		font-size: 1.4em;
 		top: 40px;
+		margin-left: -90px;
 	}
 }
 
 .tapToStartGameFromPractice{
-	background: #00BEE7;
+	background: $blue;
 	color: #fff;
 	font-size: 1em;
 	padding: 10px 10px;	
@@ -340,9 +341,15 @@ background: #000000;
 .throwing {
 	width: 600px;
 	height: 118px;
+	position: absolute;
 	margin-left: 100px;
+	top: 100px;
 	&.hide {
 		display: none;
+	}
+
+	h2.titl {
+		margin: 10px 0;
 	}
 
 	.throwmore {
@@ -361,6 +368,7 @@ background: #000000;
 		float: left;
 		width: 100%;
 		clear: both;
+		@include border-radius(15px);
 		padding-bottom: 15px;
 		h2 {
 			font-size: 1em;
@@ -377,10 +385,113 @@ background: #000000;
 			}
 		}
 	}
+
+	.throwsend{
+		width: 100%;
+		height: 120px;
+		float: left;
+		margin-top: 10px;
+		&.hide {
+			display: none;
+		}
+
+		.leftbox {
+			float: left;
+			width: 40%;
+			text-align: left;
+			font-family: 'Montserrat';
+
+			&.right {
+				width: 60%;
+
+				input {
+					float: left;
+				}
+			}
+
+			span {
+				font-size: 0.8em;
+				color: #fff;
+			}
+			input {
+				border: 0;
+				background: #cccccc;
+				font-size: 1em;
+				padding: 10px;
+				margin: 0;
+				@include transition(0.2s all ease-in-out);
+				&:focus {
+					background: #FFFFFF;
+
+				} 
+			}
+			.addmore {
+				background: $blue;
+				color: #fff;
+				font-size: 1em;
+				padding: 11px 10px;	
+				text-decoration: none;
+				float: left;
+				width: 40px;
+
+				@include transition(0.2s all ease-in-out);
+				cursor: pointer;
+				&:hover {
+					background: #e5e5e5;
+					color: #333;
+				}
+			}
+
+			.sendMails {
+				
+				color: #fff;
+				font-size: 1em;
+				padding: 12px 10px;	
+				text-decoration: none;
+				float: left;
+				margin-top:5px;
+				img {	
+					margin-top: 5px;
+					width: 40px;
+					height: auto;
+				}
+
+				&.hide {
+					display: none;
+				}
+
+				@include transition(0.2s all ease-in-out);
+				cursor: pointer;
+				&:hover {
+					background: $blue;
+					color: #333;
+				}
+			}
+
+			.mails {
+				margin-top: 5px;
+				float: left;
+				width: 260px;
+				span {
+					padding: 6px 5px;
+					float: left;
+					clear: both;
+					width: 250px;
+					background: #333;
+					&:hover {
+						color: red;
+						background: #990000;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
 }
 .throwlist {
 	padding: 3px 0px;
-	border-top: $blue solid 2px;
+	margin-top: 10px;
+	float: left;
 	border-bottom: $blue solid 2px;
 	height: 118px;
 	overflow: hidden;
@@ -426,4 +537,9 @@ background: #000000;
 		background-position: 300px 0;
 	}
 
+}
+
+
+#throwto {
+	min-width: 240px; 
 }
