@@ -14,8 +14,7 @@ $blue : #00BEE7;
 
 body {
 	font-family: 'Source Sans Pro';
-	overflow: -moz-scrollbars-vertical;
-	overflow-y: scroll;
+	overflow: hidden;
  	position: relative;
  	z-index: 1; 	
  	background: #e5e5e5;

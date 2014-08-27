@@ -11,8 +11,13 @@ $ball : #EC3A38;
 }
 
 .ball-y.throw {
-	@include transition(all 1s cubic-bezier(0.950, 0.050, 0.795, 0.035));
 	@include transition(all 1s cubic-bezier(1,0,1,.17));
+}
+
+.ball-y.fast {
+	@include transition(all 0.8s cubic-bezier(0,1.77,1,-0.8));
+	@include transition(all 0.8s cubic-bezier(1,-1.57,1,1.35));
+	margin-top: -100px;
 }
 
 .ball {
@@ -21,29 +26,84 @@ $ball : #EC3A38;
 	@include border-radius(50%);
 	background: $ball;
 	position: absolute;
-	margin-left: 85px;
+	margin-left: 100px;
 
 	&.hide {
 		display: none;
 	}
+	&.big {
+		width: 100px !important;
+		height: 100px !important; 
+		@include transition(all 1s  cubic-bezier(1,0,1,0));
+		//opacity: 0;
+	}
+	&.fast {
+		@include transition(all 0.8s  cubic-bezier(1,0,1,0));
+	}
+	&.playing {
+		width: 12px;
+		height: 12px;
+		opacity: 1 !important;
+		margin-left: 0px;
+	}
 }
 
 
-.ball.big {
-	width: 120px;
-	height: 120px; 
-	@include transition(all 1s  cubic-bezier(1,0,1,.17));
-	opacity: 0;
+// .ball.c {
+// 	// @include transition(all 1.5s cubic-bezier(0,1.77,1,-0.41));
+// 	// @include transition(all 1.5s cubic-bezier(1,0,1,.17));
+// }
+// .ball.l {
+// 	// @include transition(all 1.5s cubic-bezier(0,1.77,.81,1.41));
+// 	@include transition(all 1.2s cubic-bezier(1,0,1,.17));
+// 	margin-left: -200px;
+// }
+// .ball.r {
+// 	// @include transition(all 1.5s cubic-bezier(0,1.77,1,-0.97));
+// 	@include transition(all 1.2s cubic-bezier(1,0,1,.17));
+// 	margin-right: 200px;
+// }
+
+.ball-x {
+	margin-left: -20px;
 }
-.ball.c {
-	// @include transition(all 1.5s cubic-bezier(0,1.77,1,-0.41));
-	// @include transition(all 1.5s cubic-bezier(1,0,1,.17));
+
+.ball-x.l {
+	@include transition(all 1s cubic-bezier(0.050, 1.235, 0.995, -0.115));
+	margin-left:-140px;
 }
-.ball.l {
-	// @include transition(all 1.5s cubic-bezier(0,1.77,.81,1.41));
-	// @include transition(all 1.5s cubic-bezier(1,0,1,.17));
+.ball-x.r {
+	@include transition(all 1s cubic-bezier(0.050, 1.235, 0.995, -0.115));
+	margin-left: 120px;
 }
-.ball.r {
-	// @include transition(all 1.5s cubic-bezier(0,1.77,1,-0.97));
-	// @include transition(all 1.5s cubic-bezier(1,0,1,.17));
+
+.ball-x.t {
+	@include transition(all 0.8s cubic-bezier(0,1.49,1,-0.58));	
+	margin-left: -40px;	
+}
+
+.ball-x.c {
+	margin-left: -10px;
+	@include transition(all 1s cubic-bezier(0.255, -0.600, 1.000, -0.600));
+}
+
+
+.ball-x.x {
+	/*@include transition(all 1s cubic-bezier(0.350, 1.635, 0.610, -0.600));
+	@include transition(all 1s cubic-bezier(0.575, -0.595, 0.415, 1.650));
+	@include transition(all 1s cubic-bezier(0.570, -0.570, 0.000, 1.650));
+	@include transition(all 1s cubic-bezier(0.000, 1.650, 1.000, -0.600));
+	@include transition(all 1s cubic-bezier(0.000, 1.650, 0.310, -0.595));
+	*/
+	@include transition(all 0.7s cubic-bezier(1,-0.9,0,1.9));
+	margin-left: 100px;
+}
+
+.ball-x.y {
+	//Still hits center, but goes left...
+	/*@include transition(all 1s cubic-bezier(0.000, 1.650, 0.0, -0.9));
+	@include transition(all 1s cubic-bezier(0,1.77,1,-0.75));
+	@include transition(all 1.4s cubic-bezier(0,1.77,1,-.33));*/
+	@include transition(all 0.7s cubic-bezier(1,-0.9,0,1.9));
+	margin-left: -100px;
 }

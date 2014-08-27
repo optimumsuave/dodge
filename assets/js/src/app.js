@@ -4,7 +4,14 @@ $( document ).ready(function() {
 	PRACTICE_MODE = 0;
 	GAME_INFO = null;
 	GAME_MODE = 0;
+	TOTAL_DODGED = 0;
+	TOTAL_THROWN = 0;
+	CURRENT_BALL = 0;
+	THROW_DATA = ["c", "t", "l", "r", "x", "y"];
+	THROW_DATA = ["c", "r"];
+	LAST_BALL = "";
 	HELP = 0;
+	choices = ["c", "t", "l", "r", "x", "y"];
 
 	bindStuff();
 	clickables();
@@ -23,17 +30,24 @@ function bindStuff() {
 	$sdude = $(".sdude");
 	$sdudeouter = $(".sdude-outer");
 	$torso = $(".torso");
+	$legs = $(".legs");
 	$wrap = $(".wrap");
+	$cracked = $(".cracked");
 	$ball = $(".ball");
+	$ballx = $(".ball-x");
 	$bally = $(".ball-y");
 	$help = $(".help");
 	$banner = $(".banner");
 	$gpractice = $(".practice");
 	$gready = $(".ready");
+	$dodges = $(".dodges");
+	$dodgesCount = $dodges.find("span");
 	$bannerMenu = $(".bannermenu");
 	$challenged = $(".challenged");
 	$court = $(".court");
 	$tapToHideHelp = $(".tapToHideHelp");
+	$tapToStartGameFromPractice = $(".tapToStartGameFromPractice");
+	dudeTop = 400;
 
 
 	$(document).keydown(function(e) {
@@ -91,12 +105,22 @@ function clickables(){
 	});
 	$gready.click(function(event) {
 		event.preventDefault();
-		startGame();
+		startDodging();
 	});
 	$tapToHideHelp.click(function(event) {
 		event.preventDefault();
 		HELP = 1;
+		$(".mobile, .desktop").addClass('hide');
 		startGame();
+	});
+	$tapToStartGameFromPractice.click(function(event) {
+		event.preventDefault();
+		$tapToStartGameFromPractice.fadeOut(500);
+		resetGameData();
+		setTimeout(function(){
+			startDodging();
+		}, 1000);
+		
 	});
 }
 function startPractice(){
@@ -107,17 +131,33 @@ function startPractice(){
 	PRACTICE_MODE = 1;
 }
 function startDodging(){
-	
+	PRACTICE_MODE = 0;
+	GAME_MODE = 1;
+	clearScreenOfCrap();
+	startGame();
+	showCharacter();
+	setTimeout(function(){
+		
+	}, 1000);
 }
 function startGame(){
 	$help.addClass("hide");
-	setTimeout(showOpponent, 500);
-
+	$tapToHideHelp.hide();
+	
 	if(PRACTICE_MODE) {
-		startPracticeBallsLoop();
+		setTimeout(startPracticeBallsLoop, 2500);
+		setTimeout(showOpponent, 500);
+	} else {
+		setTimeout(startBallsLoop, 2500);
+		setTimeout(showOpponent, 1500);
 	}
 }
 function startPracticeBallsLoop(){
+	$bally.css("top", "180px");
+	throwBall();
+}
+function startBallsLoop(){
+	$bally.css("top", "180px");
 	throwBall();
 }
 function clearScreenOfCrap(){
@@ -127,12 +167,24 @@ function clearScreenOfCrap(){
 	$sdude.addClass('hide');
 }
 function showOpponent(){
-	$sdude.removeClass("hide");
+	$ball.addClass("playing");
 	$sdudeouter.addClass("play");
+	$sdude.addClass('throw');
+	$sdude.removeClass("frown");
+	setTimeout(function(){
+		$sdude.removeClass("hide");
+	}, 200);
+	$dodges.fadeIn(1000);
+	if(PRACTICE_MODE) {
+		$tapToStartGameFromPractice.fadeIn(1000);
+	}
 }
 function showCharacter() {
 	$dude.removeClass('hide');
 	$court.addClass('play');
+}
+function dodgeRatioUpdate(){
+	$dodgesCount.html(TOTAL_DODGED+"/"+TOTAL_THROWN);
 }
 function sendNewGame(){
 	$.ajax({
@@ -148,6 +200,10 @@ function sendNewGame(){
 	}).success(function(data){
 		console.log(data);
 	});
+}
+function resetGameData(){
+	TOTAL_THROWN = 0;
+	TOTAL_DODGED = 0;
 }
 function getGameInfo(){
 	if(TOKEN !== null) {
@@ -193,7 +249,6 @@ function updateGameInfo(){
 	}
 }
 function runApp() {
-	
 	setTimeout(function(){
 		throwBall();
 	}, 1000);
@@ -226,40 +281,146 @@ function timerBall(){
 		timerBall();
 	}, 2000);
 }
-function throwBall(){
-	
-	$ball.show();
-	setTimeout(function(){
+function currentBall(n) {
+	if(LAST_BALL == n) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+function checkIfDodged(){
+	dead = false;
+	if($torso.hasClass('left') && (currentBall('l') || (currentBall('y')))) {
+		console.log("hitLeft");
+		dead = true;
+	}
+	if($torso.hasClass('right') && (currentBall('r') || (currentBall('x')))) {
+		console.log("hitRight");
+		dead = true;
+		$dude.addClass("spin");
+		setTimeout(function(){
+			$dude.removeClass("spin");
+		}, 1000);
+	}
+	if(!$torso.hasClass('left') && !$torso.hasClass('right') && (currentBall('c') || currentBall('t'))) {
+		console.log("hitCenter");
+		$torso.addClass("deadScreen");
+		$legs.addClass("deadScreen");
+		setTimeout(function(){
+			$cracked.show();
+			$cracked.removeClass("hide");
+			setTimeout(function(){
+				$cracked.fadeOut(300);
+				$cracked.addClass("hide");
+			}, 1000);
+		}, 80);
+		dead = true;
+	}	
 
-		var rand = Math.floor(Math.random()*3);
-		var choices = ["c", "l", "r"];
+	if(dead == true){
+		$torso.addClass("dead");
+	} else {
+		TOTAL_DODGED++;
+	}
+	dodgeRatioUpdate();
+}
+function getRandomThrow(){
+	var r = Math.floor(Math.random()*choices.length);
+	LAST_BALL = choices[r];
+	return r;
+}
+function getThrowIndex(ball) {
+	var ind = THROW_DATA.indexOf(ball);
+	console.log(ind+":"+choices[ind]);
+	return ind;
+}
+function gameFinished(){
+	$help.removeClass("hide");
+	$dodges.addClass("ontop");
+}
+function throwBall(){
+	$torso.removeClass("deadScreen dead");
+	$legs.removeClass("deadScreen dead");
+	$ball.show();
+	$sdude.addClass('throw');
+
+	setTimeout(function(){
+		if(GAME_MODE || PRACTICE_MODE) {
+			
+			// var choices = ["t"];
+		}
+		if(GAME_MODE) {
+			if(CURRENT_BALL < THROW_DATA.length) {
+				rand = getThrowIndex(THROW_DATA[CURRENT_BALL]);
+			}
+		} else {
+			rand = getRandomThrow();
+		}
 		//var speeds = ["s", "m", "f"];
-		$bally.addClass('throw');
 		
 		$ball.addClass('big');
-		$ball.addClass(choices[rand]); 
+
+		TOTAL_THROWN++;
+		
 		//$ball.addClass(speeds[rand2]); 
-		$bally.css("top", Math.floor(Math.random()*300) + "px");
-		$ball.css("margin-left", Math.floor(Math.random()*800-400) + "px");
+		if(GAME_MODE || PRACTICE_MODE){
+			$ballx.addClass(choices[rand]); 
+			if(choices[rand] == "t") {
+				//change speed to fast
+				$ball.addClass("fast"); 
+				$bally.addClass("fast"); 
+			} else {
+				//same speed for others
+				$bally.addClass('throw');
+			}
+			$bally.css("top", "580px");
+		} else {
+			$bally.css("top", Math.floor(Math.random()*300) + "px");
+			$ball.css("margin-left", Math.floor(Math.random()*800-400) + "px");
+		}
+		$sdude.removeClass('throw');
 
-		setTimeout(function(){
-			$sdude.removeClass('throw');
-		}, 200);
-		setTimeout(function(){
-			$bally.css("top", "280px");
-			$ball.removeClass('big l r c');
-			$bally.removeClass('throw');
 
-			$ball.css("margin-left", 85 + "px");
-			$ball.hide();
-			
+		if(GAME_MODE || PRACTICE_MODE){
+			CURRENT_BALL++;
+			var checking = setInterval(function(){
+				if($bally.offset().top > 400) { 
+					//Game and practice
+					$bally.css("top", "180px");
+					$ball.addClass("reset");
+					$ball.removeClass('big hide fast');
+					$ballx.removeClass('big hide l r c t x y');
+					$bally.removeClass('throw fast');
+				
+					$ball.hide();
+					setTimeout(function(){
+
+						//$bally.addClass('throw');
+						$sdude.addClass('throw');
+						setTimeout(function(){
+							console.log(GAME_MODE, PRACTICE_MODE);
+							if(GAME_MODE) {
+								if(CURRENT_BALL < THROW_DATA.length){
+									throwBall();
+								} else {
+									gameFinished();
+								}
+							} else {
+								throwBall();
+							}
+						}, 100);
+					}, 1000);
+					checkIfDodged();
+					clearInterval(checking);
+				}
+
+			}, 50);
+		} else {
 			setTimeout(function(){
-				$sdude.addClass('throw');
-				setTimeout(function(){
-					throwBall();
-				}, 100);
+				$bally.css("top", "280px");
+				$ball.css("margin-left", "85px");
 			}, 1000);
-		}, 1000);
+		}
 
 	}, 200); // edit this for random throwing intervals
 

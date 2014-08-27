@@ -11,9 +11,13 @@
 
   </head>
   <body>
+    <div class="cracked hide"></div>
     <div class="ball-y">
-      <div class="ball"></div>
+      <div class="ball-x">
+        <div class="ball"></div>
+      </div>
     </div>
+    <div class="dodges">DODGES<span></span></div>
     <div class="help hide">
     <div class="help-inner">
       <h2 class="mobile hide">ROTATE DEVICE TO DODGE</h2>
@@ -21,7 +25,11 @@
       <h2 class="desktop hide">USE ARROW KEYS TO DODGE</h2>
       <img class="mobile hide" src="assets/images/chalkdevice.png" alt="mobile help" />
       <img class="desktop hide" src="assets/images/chalkdesktop.png" alt="mobile help" />
-      <a href="#" class="tapToHideHelp">I'M READY</a>
+      <a href="#" class="tapToHideHelp">GOT IT!</a>
+
+      <div class="throwing">
+        <div class=""></div>
+      </div>
     </div> 
   </div>
   <div class="dude-wrap">
@@ -37,6 +45,7 @@
       <div class="shell">
         <div class="content-inner">
           <div class="menu">
+          <a class="tapToStartGameFromPractice">I'M READY FOR REALITY</a>
           <div class="challenged"></div>
             <ul>
               <li><a href="#">THE GAME</a></li>

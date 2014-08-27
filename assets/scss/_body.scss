@@ -152,7 +152,7 @@ background: #000000;
 	padding-top: 100px;
 	@include transition(all 0.5s ease-in-out);
 	&.hide {
-		top: -540px;
+		top: -640px;
 	}
 
 	h2, h3 {
@@ -215,6 +215,13 @@ background: #000000;
 	&.hide {
 		display: none;
 	}
+
+	&.spin {
+		@include transition(1s all ease-out);
+		@include transform(rotate(800deg));
+		left: 120%;
+		top: 1200px;
+	}
 }
 .torso {
 	background: url(../images/torso2.png);
@@ -245,9 +252,9 @@ background: #000000;
 		width: 160px;
 		height: 300px;
 		position: relative;
-		top: -100px;
-		transform: rotate(61deg);
-		left: -32px;
+		top: -120px;
+		@include transform(rotate(61deg));
+		left: -100px;
 
 	}
 
@@ -260,4 +267,67 @@ background: #000000;
 	top:-14px;
 	position: relative;
 	margin: 0 auto;
+
+	&.deadScreen {
+		display: none;
+	}
+}
+
+.dodges {
+	font-size: 0.9em;
+	font-weight: 600;
+	color: #e5e5e5;
+	position: absolute;
+	top: 50px;
+	display: none;
+	left:50%;
+	margin-left: -200px;
+	z-index: 500;
+	font-family: 'Montserrat';
+	span {
+		padding-left: 4px;
+		font-size: 1.6em;
+		color: $blue;
+	}
+
+	&.ontop {
+		@include transition(1s all ease-in-out);
+		z-index: 500;
+		font-size: 1.4em;
+		top: 150px;
+	}
+}
+
+.tapToStartGameFromPractice{
+	background: #00BEE7;
+	color: #fff;
+	font-size: 1em;
+	padding: 10px 10px;	
+	text-decoration: none;
+	position: absolute;
+	top: 0px;
+	font-family: 'Montserrat';
+	display: none;
+	@include transition(0.2s all ease-in-out);
+	cursor: pointer;
+	&:hover {
+		background: #e5e5e5;
+		color: #333;
+	}
+}
+
+.cracked {
+	background: url(../images/cracked.png);
+        width: 800px;
+        height: 450px;
+        margin: 0 auto;
+        position:absolute;
+        left:50%;
+        margin-left: -400px;
+        z-index: 500;
+        top: 180px;
+	
+	&.hide {
+		display:none;
+	}
 }
