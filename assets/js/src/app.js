@@ -8,8 +8,7 @@ $( document ).ready(function() {
 	TOTAL_THROWN = 0;
 	RESETTING = 0;
 	CURRENT_BALL = 0;
-	THROW_DATA = ["c", "t", "l", "r", "x", "y"];
-	THROW_DATA = ["t"];
+	THROW_DATA = [];
 	NEW_THROW_DATA = [];
 	NEW_MAIL_DATA = [];
 	LAST_BALL = "";
@@ -58,6 +57,7 @@ function bindStuff() {
 	$sendMails = $(".sendMails");
 	$fromEmail = $("#emfrom");
 	$fromName = $("#namefrom");
+	$ending = $(".ending");
 	dudeTop = 400;
 
 
@@ -162,9 +162,9 @@ function clickables(){
 					$sendMails.addClass("hide");
 					var data = {
 						fromEmail: $fromEmail.val(), //CHECK IF EMAIL
-						fromEmail: $fromName.val(),
+						fromName: $fromName.val(),
 						toEmails: NEW_MAIL_DATA,
-						dodgeData: NEW_THROW_DATA,
+						dodgeData: NEW_THROW_DATA.join(""),
 						token: TOKEN
 					};
 					sendNewGame(data);
@@ -174,8 +174,6 @@ function clickables(){
 						$sendMails.removeClass("e");
 					}, 3000);
 				}
-				
-				sendNewGame(data);
 			}
 		}
 	});
@@ -230,6 +228,9 @@ function startPracticeBallsLoop(){
 	throwBall();
 }
 function startBallsLoop(){
+	if(GAME_INFO.throw_data) {
+		THROW_DATA = GAME_INFO.throw_data;
+	}
 	$bally.css("top", "180px");
 	throwBall();
 }
@@ -275,7 +276,14 @@ function sendNewGame(data){
 		}
 	}).success(function(data){
 		console.log(data);
+		if(data == "1") {
+			hideEverything();
+		}
 	});
+}
+function hideEverything(){
+	$throwing.fadeOut(1000);
+	$ending.removeClass("hide");
 }
 function resetGameData(){
 	RESETTING = 1;

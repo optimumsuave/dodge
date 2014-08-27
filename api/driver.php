@@ -16,19 +16,46 @@ function generateHash(){
 	return $hash;
 }
 
-function saveToDatabase($info, $mysqli){
-	$statement = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data) VALUES(?, ?, ?)");
-	$statement->bind_param('sss', $info['hash'], $info['name'], $info['throwData']);
+function checkIfDone($info, $mysqli){
+	$statement = $mysqli->prepare("SELECT done FROM games WHERE token =?");
+	$statement->bind_param('s', $info['token']);
 	if($statement->execute()){
-	    return 1;
-	}else{
-	    die('Error : ('. $mysqli->errno .') '. $mysqli->error);
+		$statement->bind_result($done);
+		if($done) {
+			return 0;
+		} else {
+			return 1;
+		}
 	}
-	$statement->close();		
+}
+
+function saveToDatabase($info, $mysqli){
+
+	//Select to see if done
+	if(checkIfDone($info, $mysqli)){
+		//====================
+		//Update the row to make sure that its done
+		$astatement = $mysqli->prepare("UPDATE games SET done = 1 WHERE token =?");
+		$astatement->bind_param('s', $info['token']);
+		if($astatement->execute()){
+			//Finally insert the new game if the old token checks out
+			$bstatement = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done) VALUES(?, ?, ?, 0)");
+			$bstatement->bind_param('sss', $info['hash'], $info['name'], $info['throwData']);
+			if($bstatement->execute()){
+			    return 1;
+			}else{
+			    die('Error : ('. $mysqli->errno .') '. $mysqli->error);
+			}
+			$bstatement->close();	
+		} else{
+			return 0;
+		    die('Error : ('. $mysqli->errno .') '. $mysqli->error);
+		}
+	}	
 }
 
 function getDodgeInfo($token, $mysqli){
-	$gstatement = $mysqli->prepare("SELECT from_name, throw_data, done FROM games WHERE token =?");
+	$gstatement = $mysqli->prepare("SELECT from_name, throw_data, done FROM games WHERE token =? AND done=0");
 	$gstatement->bind_param('s', $token);
 	if($gstatement->execute()){
 		$r = array();
@@ -48,13 +75,23 @@ function storeDodgeInfo($info, $mysqli){
 	$toEmail = $info['toEmail'];
 	$fromEmail = $info['fromEmail'];
 	$info['hash'] = generateHash();
-	if (filter_var($toEmail, FILTER_VALIDATE_EMAIL) && filter_var($toEmail, FILTER_VALIDATE_EMAIL)) {
+	$info['token'] = $info['token'];
+	foreach($toEmail as $em) {
+		if (filter_var($em, FILTER_VALIDATE_EMAIL)){
+
+		} else {
+			return 0;
+		}
+	}
+	if (filter_var($fromEmail, FILTER_VALIDATE_EMAIL)) {
 		//The emails are valid so far, let's try sending it.
 		//$result = sendMail($info);
 		//if($result) {
 			//cool!
-			saveToDatabase($info, $mysqli);
+			return saveToDatabase($info, $mysqli);
 		//}
+	} else {
+		return 0;
 	}
 
 }
@@ -75,8 +112,8 @@ if(isset($_POST['action'])){
 				$arr['toEmail'] = $_POST['toEmail'];
 				$arr['fromEmail'] = $_POST['fromEmail'];
 				$arr['name'] = $_POST['fromName'];
-				storeDodgeInfo($arr, $mysqli);
-				print "1";
+				$arr['token'] = $_POST['token'];
+				print storeDodgeInfo($arr, $mysqli);
 			}
 		default:
 		break;

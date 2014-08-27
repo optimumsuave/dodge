@@ -26,7 +26,9 @@
       <img class="mobile hide" src="assets/images/chalkdevice.png" alt="mobile help" />
       <img class="desktop hide" src="assets/images/chalkdesktop.png" alt="mobile help" />
       <a href="#" class="tapToHideHelp">GOT IT!</a>
-
+      <div class="ending hide">
+        Your dodgeballs have been sent. Watch out for more in your inbox!
+      </div>
       <div class="throwing hide">
         <h2 class="titl">Throw some at your friends!</h2>
         <div class="throwchoose">
