@@ -806,7 +806,8 @@ pre code[class*="language-"], pre code {
 }
 /* line 404, ../scss/_body.scss */
 .throwing .throwsend .leftbox.right {
-  width: 60%;
+  width: 54%;
+  float: right;
 }
 /* line 407, ../scss/_body.scss */
 .throwing .throwsend .leftbox.right input {
@@ -833,7 +834,11 @@ pre code[class*="language-"], pre code {
 .throwing .throwsend .leftbox input:focus {
   background: #FFFFFF;
 }
-/* line 428, ../scss/_body.scss */
+/* line 427, ../scss/_body.scss */
+.throwing .throwsend .leftbox input.e {
+  background: #cc0000;
+}
+/* line 431, ../scss/_body.scss */
 .throwing .throwsend .leftbox .addmore {
   background: #00bee7;
   color: #fff;
@@ -848,12 +853,12 @@ pre code[class*="language-"], pre code {
   transition: 0.2s all ease-in-out;
   cursor: pointer;
 }
-/* line 439, ../scss/_body.scss */
+/* line 442, ../scss/_body.scss */
 .throwing .throwsend .leftbox .addmore:hover {
   background: #e5e5e5;
   color: #333;
 }
-/* line 445, ../scss/_body.scss */
+/* line 448, ../scss/_body.scss */
 .throwing .throwsend .leftbox .sendMails {
   color: #fff;
   font-size: 1em;
@@ -867,28 +872,32 @@ pre code[class*="language-"], pre code {
   transition: 0.2s all ease-in-out;
   cursor: pointer;
 }
-/* line 453, ../scss/_body.scss */
+/* line 456, ../scss/_body.scss */
 .throwing .throwsend .leftbox .sendMails img {
   margin-top: 5px;
   width: 40px;
   height: auto;
 }
-/* line 459, ../scss/_body.scss */
+/* line 461, ../scss/_body.scss */
+.throwing .throwsend .leftbox .sendMails.e {
+  background: #cc0000;
+}
+/* line 464, ../scss/_body.scss */
 .throwing .throwsend .leftbox .sendMails.hide {
   display: none;
 }
-/* line 465, ../scss/_body.scss */
+/* line 470, ../scss/_body.scss */
 .throwing .throwsend .leftbox .sendMails:hover {
   background: #00bee7;
   color: #333;
 }
-/* line 471, ../scss/_body.scss */
+/* line 476, ../scss/_body.scss */
 .throwing .throwsend .leftbox .mails {
   margin-top: 5px;
   float: left;
   width: 260px;
 }
-/* line 475, ../scss/_body.scss */
+/* line 480, ../scss/_body.scss */
 .throwing .throwsend .leftbox .mails span {
   padding: 6px 5px;
   float: left;
@@ -896,14 +905,14 @@ pre code[class*="language-"], pre code {
   width: 250px;
   background: #333;
 }
-/* line 481, ../scss/_body.scss */
+/* line 486, ../scss/_body.scss */
 .throwing .throwsend .leftbox .mails span:hover {
   color: red;
   background: #990000;
   cursor: pointer;
 }
 
-/* line 491, ../scss/_body.scss */
+/* line 496, ../scss/_body.scss */
 .throwlist {
   padding: 3px 0px;
   margin-top: 10px;
@@ -912,14 +921,14 @@ pre code[class*="language-"], pre code {
   height: 118px;
   overflow: hidden;
 }
-/* line 499, ../scss/_body.scss */
+/* line 504, ../scss/_body.scss */
 .throwlist .throwitem:hover {
   -moz-box-shadow: inset 0 0 20px red;
   -webkit-box-shadow: inset 0 0 20px red;
   box-shadow: inset 0 0 20px red;
 }
 
-/* line 506, ../scss/_body.scss */
+/* line 511, ../scss/_body.scss */
 .throwitem {
   background: url(../images/arrows.png);
   width: 60px;
@@ -931,36 +940,36 @@ pre code[class*="language-"], pre code {
   transition: 0.2s all ease-in-out;
   cursor: pointer;
 }
-/* line 516, ../scss/_body.scss */
+/* line 521, ../scss/_body.scss */
 .throwitem.skinny {
   width: 0px;
 }
-/* line 520, ../scss/_body.scss */
+/* line 525, ../scss/_body.scss */
 .throwitem.y {
   background-position: 0px 0;
 }
-/* line 523, ../scss/_body.scss */
+/* line 528, ../scss/_body.scss */
 .throwitem.x {
   background-position: 60px 0;
 }
-/* line 527, ../scss/_body.scss */
+/* line 532, ../scss/_body.scss */
 .throwitem.c {
   background-position: 180px 0;
 }
-/* line 530, ../scss/_body.scss */
+/* line 535, ../scss/_body.scss */
 .throwitem.t {
   background-position: 240px 0;
 }
-/* line 533, ../scss/_body.scss */
+/* line 538, ../scss/_body.scss */
 .throwitem.l {
   background-position: 120px 0;
 }
-/* line 536, ../scss/_body.scss */
+/* line 541, ../scss/_body.scss */
 .throwitem.r {
   background-position: 300px 0;
 }
 
-/* line 543, ../scss/_body.scss */
+/* line 548, ../scss/_body.scss */
 #throwto {
   min-width: 240px;
 }

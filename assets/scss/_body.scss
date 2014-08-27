@@ -402,8 +402,8 @@ background: #000000;
 			font-family: 'Montserrat';
 
 			&.right {
-				width: 60%;
-
+				width: 54%;
+				float: right;
 				input {
 					float: left;
 				}
@@ -424,6 +424,9 @@ background: #000000;
 					background: #FFFFFF;
 
 				} 
+				&.e {
+					background: #cc0000;
+				}
 			}
 			.addmore {
 				background: $blue;
@@ -455,7 +458,9 @@ background: #000000;
 					width: 40px;
 					height: auto;
 				}
-
+				&.e {
+					background: #cc0000;
+				}
 				&.hide {
 					display: none;
 				}

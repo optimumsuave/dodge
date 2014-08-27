@@ -11,6 +11,7 @@ $( document ).ready(function() {
 	THROW_DATA = ["c", "t", "l", "r", "x", "y"];
 	THROW_DATA = ["t"];
 	NEW_THROW_DATA = [];
+	NEW_MAIL_DATA = [];
 	LAST_BALL = "";
 	HELP = 0;
 	choices = ["c", "t", "l", "r", "x", "y"];
@@ -55,6 +56,8 @@ function bindStuff() {
 	$throwsend = $(".throwsend");
 	$tapToAddMail= $(".addmore");
 	$sendMails = $(".sendMails");
+	$fromEmail = $("#emfrom");
+	$fromName = $("#namefrom");
 	dudeTop = 400;
 
 
@@ -138,11 +141,42 @@ function clickables(){
 		$("#throwto").val("");
 		console.log(em);
 
-		if($(".mails span").size() < 3){
+		if($(".mails span").size() < 3 && NEW_MAIL_DATA.length < 3){
 			$(".mails").append('<span onclick="removeMe(this);">' + em + '</span>');
+			NEW_MAIL_DATA.push(em);
 		}
 		if($(".mails span").size() > 0) {
 			$sendMails.removeClass("hide");
+		}
+	});
+
+	$sendMails.click(function(event) {
+		event.preventDefault();
+		if(TOKEN) {
+			if(NEW_MAIL_DATA.length > 0 && NEW_MAIL_DATA.length <= 3) {
+				var dodgedata = NEW_THROW_DATA.join("");
+				var emaildata = NEW_MAIL_DATA.join("");
+				
+				
+				if($fromName.val() != "" && $fromEmail.val() != "" && TOKEN && NEW_THROW_DATA.length>0 && NEW_MAIL_DATA.length>0){
+					$sendMails.addClass("hide");
+					var data = {
+						fromEmail: $fromEmail.val(), //CHECK IF EMAIL
+						fromEmail: $fromName.val(),
+						toEmails: NEW_MAIL_DATA,
+						dodgeData: NEW_THROW_DATA,
+						token: TOKEN
+					};
+					sendNewGame(data);
+				} else {
+					$sendMails.addClass("e");
+					setTimeout(function(){
+						$sendMails.removeClass("e");
+					}, 3000);
+				}
+				
+				sendNewGame(data);
+			}
 		}
 	});
 
@@ -151,12 +185,16 @@ function clickables(){
 		addToThrowList($(this).attr("data-throw"));
 	});
 }
+
 function removeMe(who){
 	$(who).fadeOut(200).remove();
-
 	if($(".mails span").size() == 0){
 		$sendMails.addClass("hide");
 	}
+	if(NEW_MAIL_DATA.indexOf($(who).find("span").html())){
+		NEW_MAIL_DATA.splice(NEW_MAIL_DATA.indexOf($(who).html()), 1);
+	}
+	console.log(NEW_MAIL_DATA);
 }
 function startPractice(){
 	$help.removeClass("hide");
@@ -223,17 +261,18 @@ function showCharacter() {
 function dodgeRatioUpdate(){
 	$dodgesCount.html(TOTAL_DODGED+"/"+TOTAL_THROWN);
 }
-function sendNewGame(){
+function sendNewGame(data){
 	$.ajax({
 		url: "api/driver.php",
 		type: "POST",
 		data: {
 			action: "genGame",
-			toEmail: "connorwnielsen@gmail.com",
-			fromEmail: "nyrdbyrd@gmail.com",
-			fromName: "Connor Nielsen",
-			throwData: "djskuidsfusdfgsjdg"
-		},
+			toEmail: data.toEmails,
+			fromEmail: data.fromEmail,
+			fromName: data.fromName,
+			throwData: data.dodgeData,
+			token: data.token
+		}
 	}).success(function(data){
 		console.log(data);
 	});
