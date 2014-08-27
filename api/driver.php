@@ -55,7 +55,7 @@ function saveToDatabase($info, $mysqli){
 }
 
 function getDodgeInfo($token, $mysqli){
-	$gstatement = $mysqli->prepare("SELECT from_name, throw_data, done FROM games WHERE token =?");
+	$gstatement = $mysqli->prepare("SELECT from_name, throw_data, done FROM games WHERE token =? AND done=0");
 	if($gstatement){
 		$gstatement->bind_param('s', $token);
 	}
@@ -90,11 +90,20 @@ function storeDodgeInfo($info, $mysqli){
 				}
 				
 				if($result) {
-					return saveToDatabase($info, $mysqli);
+					if(saveToDatabase($info, $mysqli)){
+
+					} else {
+						$err = 1;
+					}
 				} else {
-					return 0;
+					$err = 1;
 				}
 			}
+		}
+		if($err) {
+			return 0;
+		} else {
+			return 1;
 		}
 	}
 }
