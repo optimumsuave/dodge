@@ -3,9 +3,9 @@
 require_once('Mandrill.php');
 function sendMail($info) {
 	try {
-	$fromEmail = "connorwnielsen@gmail.com";
-	$emailTo = "connorwnielsen@gmail.com";
-	$name = "Connor Nielsen";
+	$fromEmail = $info['fromEmail'];
+	$emailTo = $info['sendToEmail'];
+	$name = $info['fromName'];
 
 	$mandrill = new Mandrill('jzg4jjCnxE8bb1imwcIi9Q');
 	$template_name = 'dodgeball';

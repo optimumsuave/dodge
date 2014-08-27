@@ -82,7 +82,7 @@ function storeDodgeInfo($info, $mysqli){
 		foreach($toEmail as $em) {
 			if (filter_var($em, FILTER_VALIDATE_EMAIL)){
 				$info['hash'] = generateHash();
-
+				$info['sendToEmail'] = $em;
 				if(!$DEV) {
 					$result = sendMail($info);
 				} else {
