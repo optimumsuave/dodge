@@ -1,6 +1,6 @@
 <?php
 
-
+$DEV = 0;
 require "connect.php";
 
 require "sendMail.php";
@@ -55,8 +55,10 @@ function saveToDatabase($info, $mysqli){
 }
 
 function getDodgeInfo($token, $mysqli){
-	$gstatement = $mysqli->prepare("SELECT from_name, throw_data, done FROM games WHERE token =? AND done=0");
-	$gstatement->bind_param('s', $token);
+	$gstatement = $mysqli->prepare("SELECT from_name, throw_data, done FROM games WHERE token =?");
+	if($gstatement){
+		$gstatement->bind_param('s', $token);
+	}
 	if($gstatement->execute()){
 		$r = array();
 	   	$gstatement->bind_result($r['name'], $r['throw_data'], $r['done']);
@@ -74,28 +76,28 @@ function storeDodgeInfo($info, $mysqli){
 	$dodges = $info['throwData'];
 	$toEmail = $info['toEmail'];
 	$fromEmail = $info['fromEmail'];
-	$info['hash'] = generateHash();
+	
 	$info['token'] = $info['token'];
-	foreach($toEmail as $em) {
-		if (filter_var($em, FILTER_VALIDATE_EMAIL)){
+	if (filter_var($fromEmail, FILTER_VALIDATE_EMAIL)) {
+		foreach($toEmail as $em) {
+			if (filter_var($em, FILTER_VALIDATE_EMAIL)){
+				$info['hash'] = generateHash();
 
-		} else {
-			return 0;
+				if(!$DEV) {
+					$result = sendMail($info);
+				} else {
+					$result = 1;
+				}
+				
+				if($result) {
+					return saveToDatabase($info, $mysqli);
+				} else {
+					return 0;
+				}
+			}
 		}
 	}
-	if (filter_var($fromEmail, FILTER_VALIDATE_EMAIL)) {
-		//The emails are valid so far, let's try sending it.
-		//$result = sendMail($info);
-		//if($result) {
-			//cool!
-			return saveToDatabase($info, $mysqli);
-		//}
-	} else {
-		return 0;
-	}
-
 }
-
 
 //Do stuff....
 if(isset($_POST['action'])){
