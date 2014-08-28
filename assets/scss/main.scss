@@ -7,6 +7,16 @@
 
 
 
+@font-face {
+  font-family: 'DIN';
+  src: url('../fonts/din/din-light.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/din/din-light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/din/din-light.woff') format('woff'), /* Modern Browsers */
+}
+
+
+
+
 $mustard : #ffb200;
 $ltgray : #F8F8F8;
 $blue : #00BEE7;
@@ -47,7 +57,7 @@ a {
 h1 {
 	font-size: 2em;
 	color: #444444;
-	font-family: 'Montserrat';
+	font-family: 'DIN';
 }
 
 code {
