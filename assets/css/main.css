@@ -999,3 +999,46 @@ pre code[class*="language-"], pre code {
   visibility: hidden;
   opacity: 0;
 }
+
+/* line 1, ../scss/_admin.scss */
+.admin {
+  margin: 0 auto;
+  width: 600px;
+  background: #FFF;
+  padding: 20px;
+}
+/* line 7, ../scss/_admin.scss */
+.admin .amenu {
+  font-size: 0.9em;
+  padding: 10px 0px;
+}
+/* line 11, ../scss/_admin.scss */
+.admin .amenu a {
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #00bee7;
+  color: #FFF;
+  padding: 5px 10px;
+}
+/* line 20, ../scss/_admin.scss */
+.admin .amenu a:hover {
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  background: #ccc;
+  color: #222;
+}
+/* line 32, ../scss/_admin.scss */
+.admin input {
+  background: #eee;
+  padding: 5px;
+  color: #00bee7;
+  font-size: 0.9em;
+  width: 590px;
+}
+/* line 41, ../scss/_admin.scss */
+.admin h2.stats span {
+  font-size: 2em;
+  color: #00bee7;
+}

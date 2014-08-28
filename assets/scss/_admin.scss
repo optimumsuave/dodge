@@ -1,0 +1,46 @@
+.admin {
+	margin: 0 auto;
+	width: 600px;
+	background: #FFF;
+	padding: 20px;
+
+	.amenu {
+		font-size: 0.9em;
+		
+		padding: 10px 0px;
+		a {
+
+			text-transform: uppercase;
+			text-decoration: none;
+			background: $blue;
+			color: #FFF;
+			padding: 5px 10px;
+			
+
+			&:hover{
+				@include transition(all 0.1s ease-in-out);
+				background: #ccc;
+				color: #222;
+			}
+		}
+	}
+
+	.content {
+
+	}
+
+	input {
+		background: #eee;
+		padding: 5px;
+		color: $blue;
+		font-size: 0.9em;
+		width: 590px;
+	}
+
+	h2.stats {
+		span {
+			font-size: 2em;
+			color: $blue;
+		}
+	}
+}

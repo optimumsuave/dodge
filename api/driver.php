@@ -71,6 +71,36 @@ function getDodgeInfo($token, $mysqli){
 	$gstatement->close();
 }
 
+function getOpenGames($mysqli) {
+	$result = $mysqli->query("SELECT COUNT(done) FROM games WHERE done = 0");
+	$row = $result->fetch_row();
+	return $row[0];
+}
+
+function getClosedGames($mysqli) {
+	$result = $mysqli->query("SELECT COUNT(done) FROM games WHERE done = 1");
+	$row = $result->fetch_row();
+	return $row[0];
+}
+
+function generateTokenForAdmin($mysqli) {
+	//$mysqli = getDB();
+	$info = array();
+	$info['throwData'] = "t";
+	$info['name'] = "The Dude";
+	$info['hash'] = generateHash();
+	$genstmt = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done) VALUES(?, ?, ?, 0)");
+	if($genstmt){
+		$genstmt->bind_param('sss', $info['hash'], $info['name'], $info['throwData']);
+		if($genstmt->execute()){
+	    	return $info['hash'];
+		}else{
+	    	die('Error : ('. $mysqli->errno .') '. $mysqli->error);
+		}
+	}
+	$genstmt->close();
+}
+
 function storeDodgeInfo($info, $mysqli){
 	//set key info
 	$dodges = $info['throwData'];
