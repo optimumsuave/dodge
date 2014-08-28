@@ -62,35 +62,37 @@ function bindStuff() {
 
 
 	$(document).keydown(function(e) {
-		// console.log(e.which);
-	  	if(e.which == 37) {
-	   		//left
-			if(!$torso.hasClass("left")){
-				if($torso.hasClass("center")){
-					$torso.removeClass("center");
-			   		$torso.addClass("left");			
+		//console.log(e.which);
+		if(GAME_MODE || PRACTICE_MODE) {
+		  	if(e.which == 37 || e.which == 65) {
+		   		//left
+				if(!$torso.hasClass("left")){
+					if($torso.hasClass("center")){
+						$torso.removeClass("center");
+				   		$torso.addClass("left");			
+					}
+					if($torso.hasClass("right")){
+						$torso.removeClass("right");
+						$torso.addClass("center");	
+					}
 				}
-				if($torso.hasClass("right")){
-					$torso.removeClass("right");
-					$torso.addClass("center");	
-				}
-			}
 
 
-	  	}
-	  	if(e.which == 39) {
-	   		//right
-			if(!$torso.hasClass("right")){
-				if($torso.hasClass("center")){
-					$torso.removeClass("center");
-			   		$torso.addClass("right");			
+		  	}
+		  	if(e.which == 39 || e.which == 68) {
+		   		//right
+				if(!$torso.hasClass("right")){
+					if($torso.hasClass("center")){
+						$torso.removeClass("center");
+				   		$torso.addClass("right");			
+					}
+					if($torso.hasClass("left")){
+						$torso.removeClass("left");
+						$torso.addClass("center");	
+					}
 				}
-				if($torso.hasClass("left")){
-					$torso.removeClass("left");
-					$torso.addClass("center");	
-				}
-			}
 
+		  	}
 	  	}
 	});
 	$(document).keyup(function(e) {
@@ -125,12 +127,16 @@ function clickables(){
 		$tapToStartGameFromPractice.fadeOut(500);
 		resetGameData();
 		resetStats();
+		if(GAME_INFO.throw_data) {
+			THROW_DATA = GAME_INFO.throw_data;
+		}
 		setTimeout(function(){
 			resetStats();
 			startGame();
 			RESETTING = 0;
 			showCharacter();
 			PRACTICE_MODE = 0;
+			CURRENT_BALL = 0;
 			GAME_MODE = 1;
 		}, 2000);
 		

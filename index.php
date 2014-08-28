@@ -22,7 +22,7 @@
     <div class="help-inner">
       <h2 class="mobile hide">ROTATE DEVICE TO DODGE</h2>
       <h3 class="mobile hide">LOCK YOUR PHONE ORIENTATION</h3>
-      <h2 class="desktop hide">USE ARROW KEYS TO DODGE</h2>
+      <h2 class="desktop hide">USE A + D KEYS TO DODGE</h2>
       <img class="mobile hide" src="assets/images/chalkdevice.png" alt="mobile help" />
       <img class="desktop hide" src="assets/images/chalkdesktop.png" alt="mobile help" />
       <a href="#" class="tapToHideHelp">GOT IT!</a>
