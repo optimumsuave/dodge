@@ -538,7 +538,7 @@ function throwBall(){
 								}
 							}
 						}, 100);
-					}, 1000);
+					}, 500);
 					if(!RESETTING) {
 						checkIfDodged();
 					}
