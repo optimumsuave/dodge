@@ -5,7 +5,7 @@ function sendMail($info) {
 	try {
 	$fromEmail = $info['fromEmail'];
 	$emailTo = $info['sendToEmail'];
-	$name = $info['fromName'];
+	$name = $info['name'];
 
 	$mandrill = new Mandrill('jzg4jjCnxE8bb1imwcIi9Q');
 	$template_name = 'dodgeball';
