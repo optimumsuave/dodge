@@ -39,8 +39,8 @@ function saveToDatabase($info, $mysqli){
 		$astatement->bind_param('s', $info['token']);
 		if($astatement->execute()){
 			//Finally insert the new game if the old token checks out
-			$bstatement = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done, spawn) VALUES(?, ?, ?, 0, 0)");
-			$bstatement->bind_param('sss', $info['hash'], $info['name'], $info['throwData']);
+			$bstatement = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done, spawn, parent_token) VALUES(?, ?, ?, 0, 0, ?)");
+			$bstatement->bind_param('sss', $info['hash'], $info['name'], $info['throwData'], $info['token']);
 			if($bstatement->execute()){
 			    return 1;
 			}else{
@@ -89,7 +89,7 @@ function generateTokenForAdmin($mysqli) {
 	$info['throwData'] = "t";
 	$info['name'] = "The Dude";
 	$info['hash'] = generateHash();
-	$genstmt = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done, spawn) VALUES(?, ?, ?, 0, 1)");
+	$genstmt = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done, spawn, parent_token) VALUES(?, ?, ?, 0, 1, 0)");
 	if($genstmt){
 		$genstmt->bind_param('sss', $info['hash'], $info['name'], $info['throwData']);
 		if($genstmt->execute()){
@@ -137,6 +137,7 @@ function storeDodgeInfo($info, $mysqli){
 		}
 	}
 }
+
 
 //Do stuff....
 if(isset($_POST['action'])){

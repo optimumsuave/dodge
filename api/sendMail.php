@@ -1,24 +1,13 @@
 <?php
 
-require_once('Mandrill.php');
+// require_once('Mandrill.php');
 function sendMail($info) {
-	try {
 	$fromEmail = $info['fromEmail'];
 	$emailTo = $info['sendToEmail'];
 	$name = $info['name'];
-
-	$mandrill = new Mandrill('jzg4jjCnxE8bb1imwcIi9Q');
-	$template_name = 'dodgeball';
-	$template_content = array(
-        	array(
-            		'name' => 'example name',
-            		'content' => 'example content'
-        	)
-    	);
 	$hash = $info['hash'];
-	$url = "http://phawnts.com/dodge/?game=" . $hash;
-    	$message = array(
-        'html' => '
+	$url = "http://rosetta.com/dodgeball/?game=" . $hash;
+    $html = '
 	<body style="background:#eee;padding-top:20px;width:600px;">
             <div style="max-width:500px;margin:0 auto;background:#fff;padding:15px;height:500px;margin:0 50px;">
                 <table>
@@ -37,54 +26,23 @@ function sendMail($info) {
 			5:30 – 7:30 PM
 			</p>
 		</td>
-		<td style="width:30%"><img style="width:100%;height:auto;" src="http://phawnts.com/dodge/assets/images/mandrill/right.png" alt="" /></td>
+		<td style="width:30%"><img style="width:100%;height:auto;" src="http://rosetta.com/dodgeball/assets/images/mandrill/right.png" alt="" /></td>
 		</tr>
 		</table>
-            </div>
-        </body>',
-        'text' => 'Example text content',
-        'subject' => 'Incoming Dodgeballs from ' . $name . '!',
-        'from_email' => $fromEmail,
-        'from_name' => 'Rosetta Dodgeball Tournament',
-        'to' => array(
-            array(
-                'email' => $emailTo,
-                'type' => 'to'
-            )
-        ),
-        'headers' => array('Reply-To' => 'connorwnielsen@gmail.com'),
-        'important' => false,
-        'track_opens' => null,
-        'track_clicks' => null,
-        'auto_text' => null,
-        'auto_html' => null,
-        'inline_css' => null,
-        'url_strip_qs' => null,
-        'preserve_recipients' => null,
-        'view_content_link' => null,
-        'tracking_domain' => null,
-        'signing_domain' => null,
-        'return_path_domain' => null,
-    	);
+    </div>';
+    $subject = 'Incoming Dodgeballs from ' . $name . '!';
+            
+            
+    $headers = "From: " . $fromEmail . "\r\n";
+    $headers .= "Reply-To: " . "connor.nielsen@rosetta.com" . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-		$async = false;
-    		$result = $mandrill->messages->sendTemplate($template_name, $template_content, $message, $async);
-		//print_r($result);
-		if(!isset($result['reject_reason'])){
-			return 1;
-		} else {
-			return 0;
-		}
-
-
-
-	} catch(Mandrill_Error $e) {
-    		// Mandrill errors are thrown as exceptions
-   		echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
-    		// A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
-    		throw $e;
-	}
-
+    if (mail($emailTo, $subject, $html, $headers)) {
+      return 1;
+    } else {
+      return 0;
+    }
 }
 
 ?>
