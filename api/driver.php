@@ -5,11 +5,6 @@ require "connect.php";
 
 require "sendMail.php";
 
-// since we connect to default setting localhost
-// and 6379 port there is no need for extra
-// configuration. If not then you can specify the
-// scheme, host and port to connect as an array
-// to the constructor.
 function generateHash(){
 	$seed = time();
 	$hash = sha1(uniqid($seed . mt_rand(), true));
@@ -40,7 +35,7 @@ function saveToDatabase($info, $mysqli){
 		if($astatement->execute()){
 			//Finally insert the new game if the old token checks out
 			$bstatement = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done, spawn, parent_token) VALUES(?, ?, ?, 0, 0, ?)");
-			$bstatement->bind_param('sss', $info['hash'], $info['name'], $info['throwData'], $info['token']);
+			$bstatement->bind_param('ssss', $info['hash'], $info['name'], $info['throwData'], $info['token']);
 			if($bstatement->execute()){
 			    return 1;
 			}else{

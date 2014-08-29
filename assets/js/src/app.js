@@ -62,7 +62,7 @@ function bindStuff() {
 
 
 	$(document).keydown(function(e) {
-		//console.log(e.which);
+		console.log(e.which);
 		if(GAME_MODE || PRACTICE_MODE) {
 		  	if(e.which == 37 || e.which == 65) {
 		   		//left
@@ -93,7 +93,14 @@ function bindStuff() {
 				}
 
 		  	}
+		  	
 	  	}
+	  	if(e.which == 87) {
+		  	//wrench
+		  	console.log("wrench");
+			$ball.find(".wrench").show();
+			$ball.addClass("w");
+		}
 	});
 	$(document).keyup(function(e) {
 		if(e.which == 37 || e.which == 39) {
@@ -101,11 +108,11 @@ function bindStuff() {
 		}
 	});
 
-	// if (window.DeviceMotionEvent != undefined) {
-	// 	window.ondevicemotion = function(e) {
-	// 		parseMotion(event.accelerationIncludingGravity.x);
-	// 	}
-	// }
+	if (window.DeviceMotionEvent != undefined) {
+		window.ondevicemotion = function(e) {
+			parseMotion(event.accelerationIncludingGravity.x);
+		}
+	}
 }
 function clickables(){
 	$gpractice.click(function(event) {
@@ -502,7 +509,8 @@ function throwBall(){
 			}
 			$bally.css("top", "580px");
 		} else {
-			$bally.css("top", Math.floor(Math.random()*300) + "px");
+			$ball.addClass('front');
+			//$bally.css("top", Math.floor(Math.random()*300) + "px");
 			$ball.css("margin-left", Math.floor(Math.random()*800-400) + "px");
 		}
 		$sdude.removeClass('throw');
@@ -555,7 +563,11 @@ function throwBall(){
 		} else {
 			setTimeout(function(){
 				$bally.css("top", "280px");
-				$ball.css("margin-left", "85px");
+				$ball.removeClass("big front");
+				$ball.css("margin-left", "100px");
+				if(!RESETTING){
+					throwBall();
+				}
 			}, 1000);
 		}
 

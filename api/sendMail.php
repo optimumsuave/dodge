@@ -6,7 +6,7 @@ function sendMail($info) {
 	$emailTo = $info['sendToEmail'];
 	$name = $info['name'];
 	$hash = $info['hash'];
-	$url = "http://rosetta.com/dodgeball/?game=" . $hash;
+	$url = "http://www.rosetta.com/dodgeball/?game=" . $hash;
     $html = '
 	<body style="background:#eee;padding-top:20px;width:600px;">
             <div style="max-width:500px;margin:0 auto;background:#fff;padding:15px;height:500px;margin:0 50px;">
@@ -26,7 +26,7 @@ function sendMail($info) {
 			5:30 – 7:30 PM
 			</p>
 		</td>
-		<td style="width:30%"><img style="width:100%;height:auto;" src="http://rosetta.com/dodgeball/assets/images/mandrill/right.png" alt="" /></td>
+		<td style="width:30%"><img style="width:100%;height:auto;" src="http://www.rosetta.com/dodgeball/assets/images/mandrill/right.png" alt="" /></td>
 		</tr>
 		</table>
     </div>';

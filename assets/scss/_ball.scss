@@ -31,11 +31,28 @@ $ball : #EC3A38;
 	&.hide {
 		display: none;
 	}
+	.wrench {
+		display: none;
+		width: 40px;
+		height: auto;
+		@include transform(rotate(10deg));
+	}
 	&.big {
 		width: 100px !important;
 		height: 100px !important; 
 		@include transition(all 1s  cubic-bezier(1,0,1,0));
 		//opacity: 0;
+
+		.wrench {
+			width: 200px;
+			height: auto;
+			@include transition(all 0.3s  ease-in-out);
+			@include transform(rotate(400deg));
+		}
+	}
+	&.front {
+		@include transition(all 0.3s  cubic-bezier(1,0,1,0));
+		opacity: 0;
 	}
 	&.fast {
 		@include transition(all 0.8s  cubic-bezier(1,0,1,0));
@@ -46,6 +63,14 @@ $ball : #EC3A38;
 		opacity: 1 !important;
 		margin-left: 0px;
 	}
+
+	&.w {
+		background: 0;
+		.wrench {
+		}
+	}
+
+
 }
 
 

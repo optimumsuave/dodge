@@ -14,7 +14,7 @@
     <div class="cracked hide"></div>
     <div class="ball-y">
       <div class="ball-x">
-        <div class="ball"></div>
+        <div class="ball"><img src="assets/images/wrench.png" class="wrench" /></div>
       </div>
     </div>
     <div class="dodges">DODGES<span></span></div>
