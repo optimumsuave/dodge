@@ -101,11 +101,11 @@ function bindStuff() {
 		}
 	});
 
-	if (window.DeviceMotionEvent != undefined) {
-		window.ondevicemotion = function(e) {
-			parseMotion(event.accelerationIncludingGravity.x);
-		}
-	}
+	// if (window.DeviceMotionEvent != undefined) {
+	// 	window.ondevicemotion = function(e) {
+	// 		parseMotion(event.accelerationIncludingGravity.x);
+	// 	}
+	// }
 }
 function clickables(){
 	$gpractice.click(function(event) {

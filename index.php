@@ -34,8 +34,8 @@
         <div class="throwchoose">
           <h2>Click the paths below to add to your dodgeball throw list.</h2>
           <div class="throwcenter">
-            <div class="throwitem y" data-throw="x"></div>
-            <div class="throwitem r" data-throw="l"></div>
+            <div class="throwitem y" data-throw="y"></div>
+            <div class="throwitem r" data-throw="r"></div>
             <div class="throwitem c" data-throw="c"></div>
             <div class="throwitem t" data-throw="t"></div>
             <div class="throwitem l" data-throw="l"></div>
