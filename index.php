@@ -22,13 +22,43 @@
     <div class="help-inner">
       <h2 class="mobile hide">ROTATE DEVICE TO DODGE</h2>
       <h3 class="mobile hide">LOCK YOUR PHONE ORIENTATION</h3>
-      <h2 class="desktop hide">USE ARROW KEYS TO DODGE</h2>
+      <h2 class="desktop hide">USE A + D KEYS TO DODGE</h2>
       <img class="mobile hide" src="assets/images/chalkdevice.png" alt="mobile help" />
       <img class="desktop hide" src="assets/images/chalkdesktop.png" alt="mobile help" />
       <a href="#" class="tapToHideHelp">GOT IT!</a>
+      <div class="ending hide">
+        Your dodgeballs have been sent. Watch out for more in your inbox!
+      </div>
+      <div class="throwing hide">
+        <h2 class="titl">Throw some at your friends!</h2>
+        <div class="throwchoose">
+          <h2>Click the paths below to add to your dodgeball throw list.</h2>
+          <div class="throwcenter">
+            <div class="throwitem y" data-throw="x"></div>
+            <div class="throwitem r" data-throw="l"></div>
+            <div class="throwitem c" data-throw="c"></div>
+            <div class="throwitem t" data-throw="t"></div>
+            <div class="throwitem l" data-throw="l"></div>
+            <div class="throwitem x" data-throw="x"></div>
+          </div>
+        </div>
 
-      <div class="throwing">
-        <div class=""></div>
+        <div class="throwlist">
+        </div>
+        <div class="throwmore hide">+
+        </div>
+        <div class="throwsend hide">
+          <div class="leftbox">
+            <span>YOUR NAME</span><input type="text" id="namefrom"/><br>
+            <span>YOUR EMAIL</span><input type="email" id="emfrom"/>
+
+          </div>
+          <div class="leftbox right">
+            <span>SEND THESE THROWS TO THIS EMAIL</span><input type="text" id="throwto"/><div class="addmore">ADD</div>
+            <div class="mails"></div>
+            <div class="sendMails hide"><img src="assets/images/send.png"/></div>
+          </div>
+        </div>
       </div>
     </div> 
   </div>

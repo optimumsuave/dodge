@@ -97,7 +97,7 @@ background: #000000;
 .banner {
 	width: 232px;
 	height: 154px;
-	background: url(../images/banner.png);
+	background: url(../images/banner2.png);
 	position: relative;
 	top: 180px;
 	z-index: 10;
@@ -117,7 +117,7 @@ background: #000000;
 			background: $blue;
 			padding: 10px 16px;
 			margin-bottom: 5px;
-			font-family: 'Montserrat';
+			font-family: 'DIN';
 			font-weight: 600;
 			text-decoration: none;
 			color: #FFF;
@@ -133,7 +133,7 @@ background: #000000;
 
 	h3 {
 		color: #FFF;
-		font-family: 'Montserrat';
+		font-family: 'DIN';
 		font-size: 0.8em;
 		margin-bottom: 40px;
 	}
@@ -158,7 +158,7 @@ background: #000000;
 	h2, h3 {
 		color: #FFF;
 		font-size: 1.4em;
-		font-family: 'Montserrat';
+		font-family: 'DIN';
 		margin-top: 10px;
 	}
 		
@@ -193,7 +193,7 @@ background: #000000;
 		width: 120px;
 		margin: 0 auto;
 		text-decoration: none;
-		font-family: 'Montserrat';
+		font-family: 'DIN';
 		margin-top: 15px;
 		@include transition(0.2s all ease-in-out);
 
@@ -221,6 +221,11 @@ background: #000000;
 		@include transform(rotate(800deg));
 		left: 120%;
 		top: 1200px;
+	}
+
+	&.left {
+		left: -10%;
+		@include transform(rotate(-800deg));
 	}
 }
 .torso {
@@ -283,7 +288,7 @@ background: #000000;
 	left:50%;
 	margin-left: -200px;
 	z-index: 500;
-	font-family: 'Montserrat';
+	font-family: 'DIN';
 	span {
 		padding-left: 4px;
 		font-size: 1.6em;
@@ -294,19 +299,20 @@ background: #000000;
 		@include transition(1s all ease-in-out);
 		z-index: 500;
 		font-size: 1.4em;
-		top: 150px;
+		top: 40px;
+		margin-left: -90px;
 	}
 }
 
 .tapToStartGameFromPractice{
-	background: #00BEE7;
+	background: $blue;
 	color: #fff;
 	font-size: 1em;
 	padding: 10px 10px;	
 	text-decoration: none;
 	position: absolute;
 	top: 0px;
-	font-family: 'Montserrat';
+	font-family: 'DIN';
 	display: none;
 	@include transition(0.2s all ease-in-out);
 	cursor: pointer;
@@ -318,16 +324,242 @@ background: #000000;
 
 .cracked {
 	background: url(../images/cracked.png);
-        width: 800px;
-        height: 450px;
-        margin: 0 auto;
-        position:absolute;
-        left:50%;
-        margin-left: -400px;
-        z-index: 500;
-        top: 180px;
+    width: 800px;
+    height: 450px;
+    margin: 0 auto;
+    position:absolute;
+    left:50%;
+    margin-left: -400px;
+    z-index: 500;
+    top: 180px;
 	
 	&.hide {
 		display:none;
+	}
+}
+
+.throwing {
+	width: 600px;
+	height: 118px;
+	position: absolute;
+	margin-left: 100px;
+	top: 100px;
+	&.hide {
+		display: none;
+	}
+
+	h2.titl {
+		margin: 10px 0;
+	}
+
+	.throwmore {
+		float: right;
+		margin-top:5px;
+		color: #FFF;
+		font-family: 'DIN';
+
+		&.hide {
+			visibility: hidden;
+		}
+	}
+
+	.throwchoose {
+		margin-top: 10px;
+		background: $blue;
+		float: left;
+		width: 100%;
+		clear: both;
+		@include border-radius(15px);
+		padding-bottom: 15px;
+		h2 {
+			font-size: 1em;
+		}
+
+		.throwcenter{
+			margin:15px auto;
+			width: 360px;
+		}
+
+		.throwitem {
+			&:hover{
+				@include box-shadow(inset 0 0 20px #333);
+			}
+		}
+	}
+
+	.throwsend{
+		width: 100%;
+		height: 120px;
+		float: left;
+		margin-top: 10px;
+		&.hide {
+			display: none;
+		}
+
+		.leftbox {
+			float: left;
+			width: 40%;
+			text-align: left;
+			font-family: 'DIN';
+
+			&.right {
+				width: 54%;
+				float: right;
+				input {
+					float: left;
+				}
+			}
+
+			span {
+				font-size: 0.8em;
+				color: #fff;
+			}
+			input {
+				border: 0;
+				background: #cccccc;
+				font-size: 1em;
+				padding: 10px;
+				margin: 0;
+				@include transition(0.2s all ease-in-out);
+				&:focus {
+					background: #FFFFFF;
+
+				} 
+				&.e {
+					background: #cc0000;
+				}
+			}
+			.addmore {
+				background: $blue;
+				color: #fff;
+				font-size: 1em;
+				padding: 11px 10px;	
+				text-decoration: none;
+				float: left;
+				width: 40px;
+
+				@include transition(0.2s all ease-in-out);
+				cursor: pointer;
+				&:hover {
+					background: #e5e5e5;
+					color: #333;
+				}
+			}
+
+			.sendMails {
+				
+				color: #fff;
+				font-size: 1em;
+				padding: 12px 10px;	
+				text-decoration: none;
+				float: left;
+				margin-top:5px;
+				img {	
+					margin-top: 5px;
+					width: 40px;
+					height: auto;
+				}
+				&.e {
+					background: #cc0000;
+				}
+				&.hide {
+					display: none;
+				}
+
+				@include transition(0.2s all ease-in-out);
+				cursor: pointer;
+				&:hover {
+					background: $blue;
+					color: #333;
+				}
+			}
+
+			.mails {
+				margin-top: 5px;
+				float: left;
+				width: 260px;
+				span {
+					padding: 6px 5px;
+					float: left;
+					clear: both;
+					width: 250px;
+					background: #333;
+					&:hover {
+						color: red;
+						background: #990000;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+}
+.throwlist {
+	padding: 3px 0px;
+	margin-top: 10px;
+	float: left;
+	border-bottom: $blue solid 2px;
+	height: 118px;
+	overflow: hidden;
+	.throwitem {
+		&:hover{
+			@include box-shadow(inset 0 0 20px red);
+		}
+	}
+	
+}
+
+.throwitem {
+	background: url(../images/arrows.png);
+	width: 60px;
+	height: 118px;
+	float: left;
+	@include transition(0.2s all ease-in-out);
+
+	cursor: pointer;
+	
+
+	&.skinny {
+		width: 0px;
+	}
+
+	&.y {
+		background-position: 0px 0;
+	}
+	&.x {
+		background-position: 60px 0;
+	}
+	
+	&.c {
+		background-position: 180px 0;
+	}
+	&.t {
+		background-position: 240px 0;
+	}
+	&.l {
+		background-position: 120px 0;
+	}
+	&.r {
+		background-position: 300px 0;
+	}
+
+}
+
+
+#throwto {
+	min-width: 240px; 
+}
+
+.ending {
+	opacity: 1;
+	visibility: visible;
+	margin: 0 auto;
+	color: #fff;
+	margin-top: 100px;
+	font-size: 1.4em;
+	@include transition(0.2s all ease-in-out);
+	&.hide {
+		visibility: hidden;
+		opacity: 0;
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-
+$DEV = 0;
 require "connect.php";
 
 require "sendMail.php";
@@ -16,20 +16,49 @@ function generateHash(){
 	return $hash;
 }
 
-function saveToDatabase($info, $mysqli){
-	$statement = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data) VALUES(?, ?, ?)");
-	$statement->bind_param('sss', $info['hash'], $info['name'], $info['throwData']);
+function checkIfDone($info, $mysqli){
+	$statement = $mysqli->prepare("SELECT done FROM games WHERE token =?");
+	$statement->bind_param('s', $info['token']);
 	if($statement->execute()){
-	    return 1;
-	}else{
-	    die('Error : ('. $mysqli->errno .') '. $mysqli->error);
+		$statement->bind_result($done);
+		if($done) {
+			return 0;
+		} else {
+			return 1;
+		}
 	}
-	$statement->close();		
+}
+
+function saveToDatabase($info, $mysqli){
+
+	//Select to see if done
+	if(checkIfDone($info, $mysqli)){
+		//====================
+		//Update the row to make sure that its done
+		$astatement = $mysqli->prepare("UPDATE games SET done = 1 WHERE token =?");
+		$astatement->bind_param('s', $info['token']);
+		if($astatement->execute()){
+			//Finally insert the new game if the old token checks out
+			$bstatement = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done) VALUES(?, ?, ?, 0)");
+			$bstatement->bind_param('sss', $info['hash'], $info['name'], $info['throwData']);
+			if($bstatement->execute()){
+			    return 1;
+			}else{
+			    die('Error : ('. $mysqli->errno .') '. $mysqli->error);
+			}
+			$bstatement->close();	
+		} else{
+			return 0;
+		    die('Error : ('. $mysqli->errno .') '. $mysqli->error);
+		}
+	}	
 }
 
 function getDodgeInfo($token, $mysqli){
-	$gstatement = $mysqli->prepare("SELECT from_name, throw_data, done FROM games WHERE token =?");
-	$gstatement->bind_param('s', $token);
+	$gstatement = $mysqli->prepare("SELECT from_name, throw_data, done FROM games WHERE token =? AND done=0");
+	if($gstatement){
+		$gstatement->bind_param('s', $token);
+	}
 	if($gstatement->execute()){
 		$r = array();
 	   	$gstatement->bind_result($r['name'], $r['throw_data'], $r['done']);
@@ -42,23 +71,72 @@ function getDodgeInfo($token, $mysqli){
 	$gstatement->close();
 }
 
+function getOpenGames($mysqli) {
+	$result = $mysqli->query("SELECT COUNT(done) FROM games WHERE done = 0");
+	$row = $result->fetch_row();
+	return $row[0];
+}
+
+function getClosedGames($mysqli) {
+	$result = $mysqli->query("SELECT COUNT(done) FROM games WHERE done = 1");
+	$row = $result->fetch_row();
+	return $row[0];
+}
+
+function generateTokenForAdmin($mysqli) {
+	//$mysqli = getDB();
+	$info = array();
+	$info['throwData'] = "t";
+	$info['name'] = "The Dude";
+	$info['hash'] = generateHash();
+	$genstmt = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done) VALUES(?, ?, ?, 0)");
+	if($genstmt){
+		$genstmt->bind_param('sss', $info['hash'], $info['name'], $info['throwData']);
+		if($genstmt->execute()){
+	    	return $info['hash'];
+		}else{
+	    	die('Error : ('. $mysqli->errno .') '. $mysqli->error);
+		}
+	}
+	$genstmt->close();
+}
+
 function storeDodgeInfo($info, $mysqli){
 	//set key info
 	$dodges = $info['throwData'];
 	$toEmail = $info['toEmail'];
 	$fromEmail = $info['fromEmail'];
-	$info['hash'] = generateHash();
-	if (filter_var($toEmail, FILTER_VALIDATE_EMAIL) && filter_var($toEmail, FILTER_VALIDATE_EMAIL)) {
-		//The emails are valid so far, let's try sending it.
-		//$result = sendMail($info);
-		//if($result) {
-			//cool!
-			saveToDatabase($info, $mysqli);
-		//}
+	
+	$info['token'] = $info['token'];
+	if (filter_var($fromEmail, FILTER_VALIDATE_EMAIL)) {
+		foreach($toEmail as $em) {
+			if (filter_var($em, FILTER_VALIDATE_EMAIL)){
+				$info['hash'] = generateHash();
+				$info['sendToEmail'] = $em;
+				if(!$DEV) {
+					$result = sendMail($info);
+				} else {
+					$result = 1;
+				}
+				
+				if($result) {
+					if(saveToDatabase($info, $mysqli)){
+
+					} else {
+						$err = 1;
+					}
+				} else {
+					$err = 1;
+				}
+			}
+		}
+		if($err) {
+			return 0;
+		} else {
+			return 1;
+		}
 	}
-
 }
-
 
 //Do stuff....
 if(isset($_POST['action'])){
@@ -75,8 +153,8 @@ if(isset($_POST['action'])){
 				$arr['toEmail'] = $_POST['toEmail'];
 				$arr['fromEmail'] = $_POST['fromEmail'];
 				$arr['name'] = $_POST['fromName'];
-				storeDodgeInfo($arr, $mysqli);
-				print "1";
+				$arr['token'] = $_POST['token'];
+				print storeDodgeInfo($arr, $mysqli);
 			}
 		default:
 		break;
