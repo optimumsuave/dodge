@@ -39,7 +39,7 @@ function saveToDatabase($info, $mysqli){
 		$astatement->bind_param('s', $info['token']);
 		if($astatement->execute()){
 			//Finally insert the new game if the old token checks out
-			$bstatement = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done) VALUES(?, ?, ?, 0)");
+			$bstatement = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done, spawn) VALUES(?, ?, ?, 0, 0)");
 			$bstatement->bind_param('sss', $info['hash'], $info['name'], $info['throwData']);
 			if($bstatement->execute()){
 			    return 1;
@@ -89,7 +89,7 @@ function generateTokenForAdmin($mysqli) {
 	$info['throwData'] = "t";
 	$info['name'] = "The Dude";
 	$info['hash'] = generateHash();
-	$genstmt = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done) VALUES(?, ?, ?, 0)");
+	$genstmt = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done, spawn) VALUES(?, ?, ?, 0, 1)");
 	if($genstmt){
 		$genstmt->bind_param('sss', $info['hash'], $info['name'], $info['throwData']);
 		if($genstmt->execute()){
