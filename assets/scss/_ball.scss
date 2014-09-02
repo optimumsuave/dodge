@@ -45,6 +45,7 @@ $ball : #EC3A38;
 
 		.wrench {
 			width: 200px;
+			
 			height: auto;
 			@include transition(all 0.3s  ease-in-out);
 			@include transform(rotate(400deg));

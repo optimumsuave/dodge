@@ -211,7 +211,7 @@ pre code[class*="language-"], pre code {
   transform: rotate(400deg);
   display: none;
 }
-/* line 54, ../scss/_ball.scss */
+/* line 55, ../scss/_ball.scss */
 .ball.front {
   -moz-transition: all 0.3s cubic-bezier(1, 0, 1, 0);
   -o-transition: all 0.3s cubic-bezier(1, 0, 1, 0);
@@ -219,31 +219,31 @@ pre code[class*="language-"], pre code {
   transition: all 0.3s cubic-bezier(1, 0, 1, 0);
   opacity: 0;
 }
-/* line 58, ../scss/_ball.scss */
+/* line 59, ../scss/_ball.scss */
 .ball.fast {
   -moz-transition: all 0.8s cubic-bezier(1, 0, 1, 0);
   -o-transition: all 0.8s cubic-bezier(1, 0, 1, 0);
   -webkit-transition: all 0.8s cubic-bezier(1, 0, 1, 0);
   transition: all 0.8s cubic-bezier(1, 0, 1, 0);
 }
-/* line 61, ../scss/_ball.scss */
+/* line 62, ../scss/_ball.scss */
 .ball.playing {
   width: 12px;
   height: 12px;
   opacity: 1 !important;
   margin-left: 0px;
 }
-/* line 68, ../scss/_ball.scss */
+/* line 69, ../scss/_ball.scss */
 .ball.w {
   background: 0;
 }
 
-/* line 93, ../scss/_ball.scss */
+/* line 94, ../scss/_ball.scss */
 .ball-x {
   margin-left: -20px;
 }
 
-/* line 97, ../scss/_ball.scss */
+/* line 98, ../scss/_ball.scss */
 .ball-x.l {
   -moz-transition: all 1s cubic-bezier(0.05, 1.235, 0.995, -0.115);
   -o-transition: all 1s cubic-bezier(0.05, 1.235, 0.995, -0.115);
@@ -252,7 +252,7 @@ pre code[class*="language-"], pre code {
   margin-left: -140px;
 }
 
-/* line 101, ../scss/_ball.scss */
+/* line 102, ../scss/_ball.scss */
 .ball-x.r {
   -moz-transition: all 1s cubic-bezier(0.05, 1.235, 0.995, -0.115);
   -o-transition: all 1s cubic-bezier(0.05, 1.235, 0.995, -0.115);
@@ -261,7 +261,7 @@ pre code[class*="language-"], pre code {
   margin-left: 120px;
 }
 
-/* line 106, ../scss/_ball.scss */
+/* line 107, ../scss/_ball.scss */
 .ball-x.t {
   -moz-transition: all 0.8s cubic-bezier(0, 1.49, 1, -0.58);
   -o-transition: all 0.8s cubic-bezier(0, 1.49, 1, -0.58);
@@ -270,7 +270,7 @@ pre code[class*="language-"], pre code {
   margin-left: -40px;
 }
 
-/* line 111, ../scss/_ball.scss */
+/* line 112, ../scss/_ball.scss */
 .ball-x.c {
   margin-left: -10px;
   -moz-transition: all 1s cubic-bezier(0.255, -0.6, 1, -0.6);
@@ -279,7 +279,7 @@ pre code[class*="language-"], pre code {
   transition: all 1s cubic-bezier(0.255, -0.6, 1, -0.6);
 }
 
-/* line 117, ../scss/_ball.scss */
+/* line 118, ../scss/_ball.scss */
 .ball-x.x {
   /*@include transition(all 1s cubic-bezier(0.350, 1.635, 0.610, -0.600));
   @include transition(all 1s cubic-bezier(0.575, -0.595, 0.415, 1.650));
@@ -294,7 +294,7 @@ pre code[class*="language-"], pre code {
   margin-left: 100px;
 }
 
-/* line 128, ../scss/_ball.scss */
+/* line 129, ../scss/_ball.scss */
 .ball-x.y {
   /*@include transition(all 1s cubic-bezier(0.000, 1.650, 0.0, -0.9));
   @include transition(all 1s cubic-bezier(0,1.77,1,-0.75));
