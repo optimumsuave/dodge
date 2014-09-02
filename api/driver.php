@@ -40,7 +40,7 @@ function saveToDatabase($info, $mysqli){
 		if($astatement->execute()){
 			//Finally insert the new game if the old token checks out
 			$bstatement = $mysqli->prepare("INSERT INTO games (token, from_name, throw_data, done, spawn, parent_token) VALUES(?, ?, ?, 0, 0, ?)");
-			$bstatement->bind_param('sss', $info['hash'], $info['name'], $info['throwData'], $info['token']);
+			$bstatement->bind_param('ssss', $info['hash'], $info['name'], $info['throwData'], $info['token']);
 			if($bstatement->execute()){
 			    return 1;
 			}else{
@@ -108,16 +108,16 @@ function storeDodgeInfo($info, $mysqli){
 	$fromEmail = $info['fromEmail'];
 	
 	$info['token'] = $info['token'];
-	if (filter_var($fromEmail, FILTER_VALIDATE_EMAIL)) {
+	// if (filter_var($fromEmail, FILTER_VALIDATE_EMAIL)) {
 		foreach($toEmail as $em) {
-			if (filter_var($em, FILTER_VALIDATE_EMAIL)){
+			// if (filter_var($em, FILTER_VALIDATE_EMAIL)){
 				$info['hash'] = generateHash();
 				$info['sendToEmail'] = $em;
-				if(!$DEV) {
-					$result = sendMail($info);
-				} else {
-					$result = 1;
-				}
+				// if(!$DEV) {
+				$result = sendMail($info);
+				// } else {
+					// $result = 1;
+				// }
 				
 				if($result) {
 					if(saveToDatabase($info, $mysqli)){
@@ -128,14 +128,14 @@ function storeDodgeInfo($info, $mysqli){
 				} else {
 					$err = 1;
 				}
-			}
+			// }
 		}
 		if($err) {
 			return 0;
 		} else {
 			return 1;
 		}
-	}
+	// }
 }
 
 
