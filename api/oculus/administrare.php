@@ -20,6 +20,7 @@
 
   //ACCESS GRANTED.
   $content = "";
+  $tokengen = "";
 
   if(!isset($_GET['q'])) {
     //HOME
