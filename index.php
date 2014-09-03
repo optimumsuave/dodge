@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Dominate, Dodge &amp; Donate Tournament</title>
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/mainprd1.css" />
     <link rel="stylesheet" href="assets/js/libs/owl/owl.carousel.css" />
 
     <script> var TOKEN = <?php if(isset($_GET["game"])){ print "'" . $_GET["game"] . "'"; } else { print "null"; } ?></script>
